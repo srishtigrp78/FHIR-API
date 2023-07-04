@@ -68,22 +68,17 @@ public class HigherHealthFacilityServiceImpl {
 
 		List<PatientDemographicModel_NDHM_Patient_Profile> resultSet = patientProfileRepo
 				.findByAmritId(reqObj.getAmritId());
-		// List<EncounterFullRepresentation> result = new
-		// ArrayList<EncounterFullRepresentation>();
+		
 		if (resultSet != null && resultSet.size() > 0) {
 			String externalID = resultSet.get(0).getExternalId();
 			resultList = encounterFullRepresentationRepo.findByPatientId(externalID);
-			// String visitID = null;
+			
 			if (resultList != null && resultList.size() > 0) {
 
 				visitList = getVisitWiseEncounterData(resultList);
-//				for (EncounterFullRepresentation obj : resultList) {
-//					visitID = obj.getVisitUuid();
-//					if (!checkIfVisitExist(result, visitID))
-//						result = getDetailsByVisitId(resultList, visitID, result);
-//				}
+
 			}
-//			resultList = mapEncounterData(resultList);
+
 		}
 		return new Gson().toJson(visitList);
 	}
@@ -173,95 +168,13 @@ public class HigherHealthFacilityServiceImpl {
 		return false;
 	}
 
-//	@Deprecated
-//	private List<EncounterFullRepresentation> getDetailsByVisitId(List<EncounterFullRepresentation> resultList,
-//			String visitID, List<EncounterFullRepresentation> result) {
-//		EncounterFullRepresentation obj1 = null;
-//		List<Observations> consultationObs = new ArrayList<Observations>();
-//		for (EncounterFullRepresentation obj : resultList) {
-//			if (visitID.equalsIgnoreCase(obj.getVisitUuid()) && obj.getEncounterType().equalsIgnoreCase("reg")) {
-//				if (obj1 == null)
-//					obj1 = obj;
-//				if (obj.getObservations() != null && obj.getObservations().size() > 0) {
-//					for (Observations obs : obj.getObservations()) {
-//						if (obs.getGroupMembers() != null && obs.getGroupMembers().size() > 0) {
-//							List<GroupMembers> group = getSerializedGroupMembers(obs.getGroupMembers());
-//							obs.setRegistrationGroupMembers(group);
-//							finalfamilymember = new ArrayList<GroupMembers>();
-//							prevFamilyMember = null;
-//						}
-//					}
-//					obj1.setObservationsReg(obj.getObservations());
-//				}
-//			} else if (visitID.equalsIgnoreCase(obj.getVisitUuid())
-//					&& obj.getEncounterType().equalsIgnoreCase("consultation")) {
-//				if (obj1 == null)
-//					obj1 = obj;
-//				if (obj.getObservations() != null && obj.getObservations().size() > 0) {
-//					for (Observations obs : obj.getObservations()) {
-//						if (obs.getGroupMembers() != null && obs.getGroupMembers().size() > 0) {
-//							List<GroupMembers> consultationgroup = getSerializedGroupMembers(obs.getGroupMembers());
-//							obs.setConsultationGroupMembers(consultationgroup);
-//							finalfamilymember = new ArrayList<GroupMembers>();
-//							prevFamilyMember = null;
-//						}
-//						consultationObs = obj.getObservations();
-//					}
-//				}
-//			}
-//		}
-//		if (obj1 != null && consultationObs != null) {
-//			obj1.setObservationsConsultation(consultationObs);
-//			result.add(obj1);
-//		}
-//		return result;
-//	}
 
-//	private List<EncounterFullRepresentation> mapEncounterData(List<EncounterFullRepresentation> resultList) {
-//		// TODO Auto-generated method stub
-//		if (resultList != null && resultList.size() > 0) {
-//			for (EncounterFullRepresentation obj : resultList) {
-//				if (obj.getObservations() != null && obj.getObservations().size() > 0) {
-//					for (Observations obs : obj.getObservations()) {
-//						if (obs.getGroupMembers() != null && obs.getGroupMembers().size() > 0) {
-//							List<GroupMembers> group = getSerializedGroupMembers(obs.getGroupMembers());
-//							obs.setFinalGroupMembers(group);
-//							finalfamilymember = new ArrayList<GroupMembers>();
-//							prevFamilyMember = null;
-//						}
-//					}
-//				}
-//			}
-//		}
-//		return resultList;
-//	}
-
-//	@Deprecated
-//	private List<GroupMembers> getSerializedGroupMembers(List<GroupMembers> groupMembers) {
-//		// TODO Auto-generated method stub
-//		List<GroupMembers> temp = groupMembers;
-//		prevFamilyMember = groupMembers;
-//		for (int i = 0; i < groupMembers.size(); i++) {
-//			temp = groupMembers.get(i).getGroupMembers();
-//
-//			if (temp != null && temp.size() > 0) {
-//				temp = getSerializedGroupMembers(temp);
-//				prevFamilyMember = temp;
-//			} else {
-//				if (prevFamilyMember.get(i) != null) {
-//					prevFamilyMember.get(i).setGroupMembers(null);
-//					finalfamilymember.add(prevFamilyMember.get(i));
-//				}
-//			}
-//		}
-//		return finalfamilymember;
-//	}
 
 	List<GroupMembers> finalfamilymember = new ArrayList<GroupMembers>();
 	// List<GroupMembers> prevFamilyMember;
 
 	private List<GroupMembers> getSerializedGroupMembersNew(List<GroupMembers> groupMembers) {
-		// TODO Auto-generated method stub
+		
 		for (GroupMembers gm : groupMembers) {
 			if (gm.getGroupMembers() == null || gm.getGroupMembers().size() == 0) {
 				finalfamilymember.add(gm);

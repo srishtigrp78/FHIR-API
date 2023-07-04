@@ -55,8 +55,6 @@ public interface PatientDemographicModel_NDHM_Patient_Profile_Repo
 
 	Page<PatientDemographicModel_NDHM_Patient_Profile> findByExternalId(String externalId, Pageable pageable);
 
-//	Page<PatientDemographicModel_NDHM_Patient_Profile> find(org.springframework.data.mongodb.core.query.Query query,
-//			Page<PatientDemographicModel_NDHM_Patient_Profile> p);
 
 	Page<PatientDemographicModel_NDHM_Patient_Profile> findAllByOrderByIdDesc(Pageable pr);
 

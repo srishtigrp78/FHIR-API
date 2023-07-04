@@ -93,7 +93,7 @@ public class GenerateHealthID_CardServiceImpl implements GenerateHealthID_CardSe
 
 			String requestOBJ = new Gson().toJson(requestMap);
 
-//			String requestOBJ = new Gson().toJson(obj);
+
 			logger.info("NDHM_FHIR generate OTP for card API request Obj " + requestOBJ);
 			HttpHeaders headers = common_NDHMService.getHeaders(ndhmAuthToken);
 
@@ -213,7 +213,7 @@ public class GenerateHealthID_CardServiceImpl implements GenerateHealthID_CardSe
 
 	@Override
 	public String generateCard(String req, String NDHM_X_TOKEN) throws FHIRException {
-		// TODO Auto-generated method stub
+		
 		String res = null;
 		try {
 			String ndhmAuthToken = generateSession_NDHM.getNDHMAuthToken();
@@ -223,10 +223,7 @@ public class GenerateHealthID_CardServiceImpl implements GenerateHealthID_CardSe
 			byte[] ar = responseEntity.getBody();
 			if (ar != null) {
 				res = Base64.getEncoder().encodeToString(ar);
-//				return ResponseEntity.ok().contentType(MediaType.parseMediaType("image/png"))
-//						.header(HttpHeaders.CONTENT_DISPOSITION,
-//								"inline; filename=PNG")
-//						.body(ar);
+
 			} else
 				throw new FHIRException("NDHM_FHIR Error while accessing generate card API");
 		}

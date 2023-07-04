@@ -100,7 +100,7 @@ public class ClinicalFeedWorker {
 		List<EncounterFullRepresentation> encounterList = readPatientEncounterFeeds(parentUrl,
 				atomFeedURLPatientEncounter, pointer, feed);
 		logger.info(encounterList.size() + " clinical entry processed successfully");
-		// return patientList.size() + " entry processed successfully";
+		
 		return new Gson().toJson(encounterList);
 	}
 
@@ -182,7 +182,7 @@ public class ClinicalFeedWorker {
 						feedPageSuccess++;
 
 					} catch (HttpClientErrorException e) {
-						// TODO: handle exception
+						
 						logger.error("error in processing encounter entry : " + syndEntry.getUri() + " || link - "
 								+ syndEntry.getLink() + " error_message : " + e.getMessage());
 
@@ -191,7 +191,7 @@ public class ClinicalFeedWorker {
 								feedLink, null, null, false, false);
 						feedPageSuccess++;
 					} catch (Exception e) {
-						// TODO: handle exception
+					
 						logger.error("error in processing encounter entry : " + syndEntry.getUri() + " || link - "
 								+ syndEntry.getLink() + " error_message : " + e.getMessage());
 
@@ -217,13 +217,13 @@ public class ClinicalFeedWorker {
 
 			} catch (IllegalArgumentException e) {
 				pointer = 0;
-				// TODO: handle exception
+				
 			} catch (FeedException e) {
 				pointer = 0;
-				// TODO: handle exception
+				
 			} catch (IOException e) {
 				pointer = 0;
-				// TODO: handle exception
+				
 			} catch (Exception e) {
 				pointer = 0;
 			}
@@ -261,8 +261,7 @@ public class ClinicalFeedWorker {
 				feedDataLog.setEntry(syndEntry.toString());
 
 			for (SyndLink link : feedLink) {
-//			System.out.println(link.getRel());
-//			System.out.println(link.getHref());
+
 
 				if (link.getRel() != null && link.getHref() != null) {
 					switch (link.getRel().toLowerCase()) {
@@ -279,7 +278,7 @@ public class ClinicalFeedWorker {
 						feedDataLog.setLinkPrevArchive(link.getHref());
 						break;
 					default:
-						// System.out.println("temp code");
+						
 					}
 				}
 			}
@@ -288,13 +287,12 @@ public class ClinicalFeedWorker {
 				feedDataLog.setEntrySuccess(status);
 			if (feedPageCompleteStatus != null)
 				feedDataLog.setFeedSuccess(feedPageCompleteStatus);
-			// System.out.println(feedDataLog);
+			
 			feedDataLog = clinicalFeedDataLogRepo.save(feedDataLog);
 		} catch (Exception e) {
 			logger.info("Error while saving log:" + e.getMessage());
 		}
-		// feedDataLog.set
-		// feedDataLogRepo
+		
 	}
 
 	public HttpHeaders getHeaders() {
@@ -305,7 +303,7 @@ public class ClinicalFeedWorker {
 			return headers;
 		else {
 			headers = new HttpHeaders();
-			// String plainCreds = "superman:Admin123";
+			
 			String plainCreds = decryptUserName + ":" + decryptPassword;
 			byte[] plainCredsBytes = plainCreds.getBytes();
 			byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);

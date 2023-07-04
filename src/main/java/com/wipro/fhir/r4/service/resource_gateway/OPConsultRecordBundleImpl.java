@@ -117,15 +117,7 @@ public class OPConsultRecordBundleImpl implements OPConsultRecordBundle {
 		if (aMRIT_ResourceMongo != null) {
 
 			i = commonService.saveResourceToMongo(aMRIT_ResourceMongo);
-//			if (i == 1) {
-//				// update the processed flag in trigger table
-//				p.setProcessed(true);
-//				PatientEligibleForResourceCreation resultSet = patientEligibleForResourceCreationRepo.save(p);
-//				if (resultSet != null && resultSet.getId() > 0)
-//					System.out.println("processed flag updated successfully");
-//			} else
-//				// error in resource saving to mongo
-//				System.out.println("processed flag will not be updated");
+
 		} else
 			throw new FHIRException("TODO - exception - later will implement");
 
@@ -192,8 +184,7 @@ public class OPConsultRecordBundleImpl implements OPConsultRecordBundle {
 		List<Observation> observationVitalList = observationResource.getObservationVitals(patient, encounter,
 				resourceRequestHandler);
 
-//		int i = commonService.saveTempResourceToMongo(createTempCollectionOBJ(observationMap, resourceRequestHandler));
-		// System.out.println(i);
+
 
 		// Composition resource
 		Composition composition = compositionResource.getComposition(patient, encounter, allergyList, appointment,
@@ -247,8 +238,6 @@ public class OPConsultRecordBundleImpl implements OPConsultRecordBundle {
 					.getRequest().setUrl("AllergyIntolerance").setMethod(Bundle.HTTPVerb.POST);
 		}
 
-//		bundle.addEntry().setFullUrl(familyMemberHistory.getIdElement().getValue()).setResource(familyMemberHistory)
-//				.getRequest().setUrl("familyMemberHistory").setMethod(Bundle.HTTPVerb.POST);
 
 		bundle.addEntry().setFullUrl(encounter.getIdElement().getValue()).setResource(encounter).getRequest()
 				.setUrl("Encounter").setMethod(Bundle.HTTPVerb.POST);

@@ -34,5 +34,4 @@ public class Concept {
 	private String lowNormal;
 	private Boolean set;
 
-	//private String mappings;
 }

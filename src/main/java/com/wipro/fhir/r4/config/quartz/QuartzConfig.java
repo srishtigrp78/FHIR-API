@@ -86,7 +86,7 @@ public class QuartzConfig {
 	public SchedulerFactoryBean quartzScheduler() {
 		SchedulerFactoryBean quartzScheduler = new SchedulerFactoryBean();
 
-		// quartzScheduler.setso;
+		
 		quartzScheduler.setTransactionManager(transactionManager);
 		quartzScheduler.setOverwriteExistingJobs(true);
 		quartzScheduler.setSchedulerName("jelies-quartz-scheduler");

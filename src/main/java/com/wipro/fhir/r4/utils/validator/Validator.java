@@ -35,7 +35,7 @@ import com.wipro.fhir.r4.utils.sessionobject.SessionObject;
 
 @Service
 public class Validator {
-	// private static SessionObject session;
+	
 
 	private SessionObject session;
 	private static Boolean enableIPValidation = false;
@@ -46,11 +46,7 @@ public class Validator {
 		this.session = sessionObject;
 	}
 
-	// private static void setSessionObject() {
-	// if (session == null) {
-	// session = new SessionObject();
-	// }
-	// }
+	
 
 	private Logger logger = LoggerFactory.getLogger(Validator.class);
 

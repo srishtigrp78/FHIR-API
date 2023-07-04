@@ -67,11 +67,7 @@ public class PatientResource {
 
 	public Patient getPatientResource(ResourceRequestHandler resourceRequestHandler) throws FHIRException {
 
-		// call BenID search API through API channel from platform
-//		String responseBody = aPIChannel.benSearchByBenID(Authorization, resourceRequestHandler);
-//
-//		PatientSearchAPIResponse psr = (InputMapper.gson().fromJson(responseBody, PatientSearchAPIResponse.class));
-
+		
 		List<Object[]> rsObjList = patientEligibleForResourceCreationRepo
 				.callPatientDemographicSP(resourceRequestHandler.getBeneficiaryRegID());
 
@@ -94,8 +90,7 @@ public class PatientResource {
 
 		// get ABHA for patient - later will be available in patient search only.
 		// temp code - till search API is integrated with ABHA
-//		ArrayList<BenHealthIDMapping> healthIDMappedList = benHealthIDMappingRepo
-//				.getHealthDetails(pd.getBeneficiaryRegID());
+
 
 		// list of identifiers
 		List<Identifier> identifierList = new ArrayList<Identifier>();
@@ -119,27 +114,12 @@ public class PatientResource {
 
 		// name
 		HumanName hName = new HumanName();
-		// title, prefix
-//		String title = "";
-//		if (pd.getM_title() != null && pd.getM_title().getTitleName() != null)
-//			title = pd.getM_title().getTitleName() + " ";
-
-		// hName.addPrefix(title);
-		// hName.addGiven(pd.getFirstName());
-		// hName.setFamily((pd.getLastName() != null) ? pd.getLastName() : "");
+		
 		if (pd.getName() != null)
 			hName.setText(pd.getName());
 		p.addName(hName);
 
-		// telecom /phone no
-//		if (pd.getBenPhoneMaps() != null && pd.getBenPhoneMaps().size() > 0) {
-//
-//			List<ContactPoint> cpList = new ArrayList<>();
-//			ContactPoint cp = new ContactPoint();
-//			cp.setSystem(ContactPointSystem.PHONE);
-//			cp.setValue(pd.getBenPhoneMaps().get(0).getPhoneNo());
-//			cp.setUse(ContactPointUse.MOBILE);
-//		}
+		
 
 		// gender
 		if (pd.getGender() != null) {
@@ -182,41 +162,6 @@ public class PatientResource {
 			p.setBirthDate(pd.getDOB());
 		}
 
-		// Address
-//		if (pd.getI_bendemographics().getAddressLine1() != null || pd.getI_bendemographics().getAddressLine1() != null
-//				|| pd.getI_bendemographics().getAddressLine1() != null) {
-//			String address1 = (pd.getI_bendemographics().getAddressLine1() != null)
-//					? pd.getI_bendemographics().getAddressLine1()
-//					: "";
-//			String address2 = (pd.getI_bendemographics().getAddressLine2() != null)
-//					? pd.getI_bendemographics().getAddressLine2()
-//					: "";
-//			String address3 = (pd.getI_bendemographics().getAddressLine3() != null)
-//					? pd.getI_bendemographics().getAddressLine3()
-//					: "";
-//
-//			p.addAddress().setText(address1 + " " + address2 + " " + address3);
-//		}
-//		if (pd.getI_bendemographics().getPinCode() != null)
-//			p.addAddress().setPostalCode(pd.getI_bendemographics().getPinCode());
-//		if (pd.getI_bendemographics().getDistrictName() != null)
-//			p.addAddress().setDistrict(pd.getI_bendemographics().getDistrictName());
-//		if (pd.getI_bendemographics().getStateName() != null)
-//			p.addAddress().setState(pd.getI_bendemographics().getStateName());
-//		p.addAddress().setCountry("India");
-
-		// Martial status
-//		if (pd.getMaritalStatus().getMaritalStatusID() != null && pd.getMaritalStatus().getStatus() != null) {
-//			CodeableConcept cc = new CodeableConcept();
-//			Coding c = new Coding();
-//
-//			c.setCode(pd.getMaritalStatus().getMaritalStatusID().toString());
-//			c.setDisplay(pd.getMaritalStatus().getStatus());
-//
-//			cc.addCoding(c);
-//
-//			p.setMaritalStatus(cc);
-//		}
 
 		return p;
 	}

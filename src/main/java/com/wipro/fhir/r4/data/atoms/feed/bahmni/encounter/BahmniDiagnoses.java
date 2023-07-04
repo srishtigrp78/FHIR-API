@@ -35,7 +35,7 @@ public class BahmniDiagnoses {
 	private CodedAnswer codedAnswer;
 
 	private String existingObs;
-	//private Date diagnosisDateTime;
+	
 	private Boolean voided;
 	private String voidReason;
 	private String comments;

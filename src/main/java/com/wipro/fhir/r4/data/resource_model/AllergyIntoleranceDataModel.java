@@ -35,21 +35,6 @@ import lombok.Data;
 @Component
 //@Entity
 //@Table(name = "t_benallergyhistory")
-//@NamedStoredProcedureQueries({
-//		@NamedStoredProcedureQuery(name = "AllergyIntoleranceDataModel.allergyIntoleranceSp", procedureName = "db_iemr.FHIR_R_AllergyIntolerance", resultClasses = {
-//				AllergyIntoleranceDataModel.class }, parameters = {
-//						@StoredProcedureParameter(mode = ParameterMode.IN, name = "beneficiaryRegID_IN", type = Long.class),
-//						@StoredProcedureParameter(mode = ParameterMode.IN, name = "visitCode_IN", type = Long.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "beneficiaryRegID_OUT", type = Long.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "visitCode_OUT", type = Long.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "providerServiceMapID_OUT", type = Integer.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "vanID_OUT", type = Integer.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "allergyStatus_OUT", type = String.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "allergyType_OUT", type = String.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "sctcode_OUT", type = String.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "sctTerm_OUT", type = String.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "createdDate_OUT", type = Timestamp.class),
-//						@StoredProcedureParameter(mode = ParameterMode.OUT, name = "createdBy_OUT", type = String.class) }) })
 
 public class AllergyIntoleranceDataModel implements Serializable {
 	/**

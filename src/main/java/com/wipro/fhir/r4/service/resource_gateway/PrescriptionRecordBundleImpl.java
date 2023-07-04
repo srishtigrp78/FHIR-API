@@ -95,15 +95,7 @@ public class PrescriptionRecordBundleImpl implements PrescriptionRecordBundle {
 		// if resource data is not null, save to mongo
 		if (aMRIT_ResourceMongo != null) {
 			i = commonService.saveResourceToMongo(aMRIT_ResourceMongo);
-//			if (i == 1) {
-//				// update the processed flag in trigger table
-//				p.setProcessed(true);
-//				PatientEligibleForResourceCreation resultSet = patientEligibleForResourceCreationRepo.save(p);
-//				if (resultSet != null && resultSet.getId() > 0)
-//					System.out.println("processed flag updated successfully");
-//			} else
-//				// error in resource saving to mongo
-//				System.out.println("processed flag will not be updated");
+
 		} else
 			throw new FHIRException("TODO - exception - later will implement");
 

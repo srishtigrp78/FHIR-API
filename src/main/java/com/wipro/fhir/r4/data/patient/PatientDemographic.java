@@ -88,7 +88,7 @@ public class PatientDemographic {
 
 	public PatientDemographic() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public PatientDemographic getPatientDemographic(List<Object[]> objList) {

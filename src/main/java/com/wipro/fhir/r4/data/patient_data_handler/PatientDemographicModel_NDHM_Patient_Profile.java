@@ -163,7 +163,7 @@ public class PatientDemographicModel_NDHM_Patient_Profile {
 
 			public Patient() {
 				super();
-				// TODO Auto-generated constructor stub
+				
 			}
 
 			public class Address {
@@ -186,7 +186,7 @@ public class PatientDemographicModel_NDHM_Patient_Profile {
 
 				public Address() {
 					super();
-					// TODO Auto-generated constructor stub
+					
 				}
 
 				public String getLine() {

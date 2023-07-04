@@ -227,12 +227,7 @@ public class ObservationResource {
 		observation.setId("Observation/" + commonService.getUUID());
 		observation.setStatus(ObservationStatus.FINAL);
 		observation.setIssued(vital.getCreatedDate());
-		// effective date
-		// DateType st = new DateType();
-		// st.setValue(vital.getCreatedDate());
-		// st.setId("effectiveDateTime");
-		// observation.setEffective(st);
-
+		
 		DateTimeType dtt = new DateTimeType(vital.getCreatedDate());
 
 		observation.setEffective(dtt);
@@ -265,7 +260,7 @@ public class ObservationResource {
 			DateTimeType dtt = new DateTimeType(o.getCreatedDate());
 			observation.setEffective(dtt);
 
-			// name : code, type : CodeableConcept, Desc : Type of observation (code / type)
+			
 			cc = new CodeableConcept();
 			c = new Coding();
 
@@ -286,7 +281,7 @@ public class ObservationResource {
 			performerList.add(performer);
 			observation.setPerformer(performerList);
 
-			// value[] || test result with unit || valuecodeableconcept
+			
 			if (o.getTestResultValue() != null)
 				sb.append(o.getTestResultValue());
 			if (o.getTestResultUnit() != null)

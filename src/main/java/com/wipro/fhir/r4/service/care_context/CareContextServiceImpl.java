@@ -83,15 +83,8 @@ public class CareContextServiceImpl implements CareContextService {
 		} catch (Exception e) {
 			throw new FHIRException(e.getMessage());
 		}
-		// commenting 21-03-2022
-//		try {
-//			logger.info("saving care-context to mongo. Request data : " + request);
-//			int i = commonServiceImpl.addCareContextToMongo(request);
-//			if (i == 1)
-//				logger.info("care-context data saved to mongo");
-//		} catch (Exception e) {
-//			logger.error("NDHM_FHIR error in saving care-context to mongo");
-//		}
+	
+
 		if (res != null)
 			return res;
 		else
@@ -111,7 +104,7 @@ public class CareContextServiceImpl implements CareContextService {
 		if ((jsnOBJ.has("healthID") && jsnOBJ.get("healthID") != null && !jsnOBJ.get("healthID").isJsonNull())
 				&& (jsnOBJ.has("healthIdNumber") && jsnOBJ.get("healthIdNumber") != null
 						&& !jsnOBJ.get("healthIdNumber").isJsonNull())) {
-//			System.out.println("Passing ABHA and ABHA Number");
+
 			result = benHealthIDMappingRepo.updateHealthIDAndHealthIDNumberForCareContext(
 					jsnOBJ.get("healthID").getAsString(), jsnOBJ.get("healthIdNumber").getAsString(),
 					jsnOBJ.get("visitCode").getAsString());
@@ -122,7 +115,7 @@ public class CareContextServiceImpl implements CareContextService {
 					jsnOBJ.get("visitCode").getAsString());
 		} else if (jsnOBJ.has("healthIdNumber") && jsnOBJ.get("healthIdNumber") != null
 				&& !jsnOBJ.get("healthIdNumber").isJsonNull()) {
-//						System.out.println("Passing ABHA Number" + jsnOBJ.get("healthIdNumber"));
+
 			result = benHealthIDMappingRepo.updateHealthIDNumberForCareContext(
 					jsnOBJ.get("healthIdNumber").getAsString(), jsnOBJ.get("visitCode").getAsString());
 		} else {

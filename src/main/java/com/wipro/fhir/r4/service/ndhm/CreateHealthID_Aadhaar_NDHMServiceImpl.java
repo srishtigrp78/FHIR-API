@@ -243,16 +243,11 @@ public class CreateHealthID_Aadhaar_NDHMServiceImpl implements CreateHealthID_Aa
 	@Override
 	public HealthIDResponse createHealthIDWithUID(String request) throws FHIRException {
 		HealthIDResponse health = new HealthIDResponse();
-		// Map<String, String> requestMap = new HashMap<String, String>();
+		
 		try {
 			String ndhmAuthToken = generateSession_NDHM.getNDHMAuthToken();
 			HealthIDRequestAadhar obj = InputMapper.gson().fromJson(request, HealthIDRequestAadhar.class);
-//			requestMap.put("email", obj.getEmail());//create class
-//			requestMap.put("firstName", obj.getFirstName());
-//			requestMap.put("lastName", obj.getLastName());
-//			requestMap.put("otp", obj.getOtp());
-//			requestMap.put("txnId", obj.getTxnId());
-//			requestMap.put("username", obj.getUsername());
+
 			String requestOBJ = new Gson().toJson(obj);
 			logger.info("NDHM_FHIR create ABHA API with aadhar request Obj " + requestOBJ);
 			HttpHeaders headers = common_NDHMService.getHeaders(ndhmAuthToken);

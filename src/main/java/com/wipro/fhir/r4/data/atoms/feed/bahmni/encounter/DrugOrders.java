@@ -31,14 +31,12 @@ public class DrugOrders {
 	private String uuid;
 	private String orderType;
 	private String orderGroup;
-//	private Date dateCreated;
-//	private Date dateChanged;
-//	private Date dateStopped;
+
 	private String orderNumber;
 	private String careSetting;
 	private String action;
 	private String commentToFulfiller;
-//	private Date autoExpireDate;
+
 	private String urgency;
 	private String previousOrderUuid;
 
@@ -49,10 +47,7 @@ public class DrugOrders {
 
 	private DosingInstructions dosingInstructions;
 
-//	private Date dateActivated;
-//	private Date scheduledDate;
-//	private Date effectiveStartDate;
-// private Date effectiveStopDate;
+
 	private String orderReasonText;
 	private Integer duration;
 	private String durationUnits;

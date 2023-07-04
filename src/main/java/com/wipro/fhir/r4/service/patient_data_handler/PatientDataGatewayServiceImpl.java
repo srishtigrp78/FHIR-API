@@ -90,7 +90,7 @@ public class PatientDataGatewayServiceImpl implements PatientDataGatewayService 
 
 	@Override
 	public String generatePatientProfileAMRIT_SaveTo_Mongo(String Authorization) throws FHIRException {
-		// String response = null;
+		
 		List<PatientDemographicModel_NDHM_Patient_Profile> ppList = new ArrayList<>();
 
 		List<TRG_PatientResourceData> resultSetList = tRG_PatientResourceData_Repo
@@ -114,7 +114,7 @@ public class PatientDataGatewayServiceImpl implements PatientDataGatewayService 
 	@Override
 	public String generatePatientProfileAMRIT_SaveTo_Mongo(String Authorization,
 			ResourceRequestHandler resourceRequestHandler) throws FHIRException {
-		// String response = null;
+		
 		List<PatientDemographicModel_NDHM_Patient_Profile> ppList = new ArrayList<>();
 
 		List<TRG_PatientResourceData> resultSetList = tRG_PatientResourceData_Repo
@@ -194,7 +194,7 @@ public class PatientDataGatewayServiceImpl implements PatientDataGatewayService 
 						// multiple patient found
 					}
 				} catch (Exception e) {
-					// TODO: handle exception
+					
 					logger.error("Error in patient profile creation - Beneficiary ID : " + obj.getBeneficiaryID()
 							+ " error : " + e.getMessage());
 				}
@@ -210,9 +210,9 @@ public class PatientDataGatewayServiceImpl implements PatientDataGatewayService 
 			patientProfile = new PatientDemographicModel_NDHM_Patient_Profile();
 
 			patientProfile.setRequestId(commonService.getUUID());
-			// System.out.println("local created date : " + obj.getCreatedDate());
+			
 			patientProfile.setTimestamp(obj.getCreatedDate());
-			// System.out.println(patientProfile.getTimestamp());
+			
 
 			patientProfile.setAmritId(obj.getBeneficiaryID().toString());
 
@@ -250,7 +250,7 @@ public class PatientDataGatewayServiceImpl implements PatientDataGatewayService 
 			}
 
 			if (pd.getdOB() != null) {
-				// System.out.println(pd.getdOB());
+				
 				Calendar cal = Calendar.getInstance();
 				cal.setTimeInMillis(pd.getdOB().getTime());
 

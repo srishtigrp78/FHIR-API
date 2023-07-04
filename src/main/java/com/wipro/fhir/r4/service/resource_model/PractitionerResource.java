@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PractitionerResource {
 
-//	private String UUID;
+
 	private Practitioner practitioner;
 
 	public Practitioner getPractitioner() {

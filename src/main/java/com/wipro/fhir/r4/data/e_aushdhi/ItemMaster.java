@@ -169,13 +169,7 @@ public class ItemMaster {
 	
 
 	
-//	public M_itemfacilitymapping getM_itemfacilitymapping() {
-//		return m_itemfacilitymapping;
-//	}
-//
-//	public void setM_itemfacilitymapping(M_itemfacilitymapping m_itemfacilitymapping) {
-//		this.m_itemfacilitymapping = m_itemfacilitymapping;
-//	}
+
 
 	public String getSctCode() {
 		return sctCode;
@@ -417,7 +411,7 @@ public class ItemMaster {
 	}
 
 	public ItemMaster(Integer itemID, String ItemName) {
-		// TODO Auto-generated constructor stub
+		
 		this.itemID=itemID;
 		this.itemName=ItemName;
 	}

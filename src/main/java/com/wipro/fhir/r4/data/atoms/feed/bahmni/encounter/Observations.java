@@ -28,8 +28,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Observations {
-	//private Date encounterDateTime;
-	//private Date visitStartDateTime;
+	
 	private String targetObsRelation;
 
 	private List<GroupMembers> groupMembers;
@@ -66,8 +65,7 @@ public class Observations {
 	private String value;
 	private String type;
 	
-//	List<GroupMembers> ConsultationGroupMembers;
-//	List<GroupMembers> RegistrationGroupMembers;
+
 	public String getTargetObsRelation() {
 		return targetObsRelation;
 	}
@@ -227,18 +225,7 @@ public class Observations {
 	public String getOrderUuid() {
 		return orderUuid;
 	}
-//	public List<GroupMembers> getConsultationGroupMembers() {
-//		return ConsultationGroupMembers;
-//	}
-//	public void setConsultationGroupMembers(List<GroupMembers> consultationGroupMembers) {
-//		ConsultationGroupMembers = consultationGroupMembers;
-//	}
-//	public List<GroupMembers> getRegistrationGroupMembers() {
-//		return RegistrationGroupMembers;
-//	}
-//	public void setRegistrationGroupMembers(List<GroupMembers> registrationGroupMembers) {
-//		RegistrationGroupMembers = registrationGroupMembers;
-//	}
+
 	public void setOrderUuid(String orderUuid) {
 		this.orderUuid = orderUuid;
 	}

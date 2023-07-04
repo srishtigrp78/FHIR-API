@@ -42,7 +42,7 @@ public class EncounterFullRepresentation {
 	private List<BahmniDiagnoses> bahmniDiagnoses;
 	private List<Observations> observations;
 
-	// private String accessionNotes;
+	
 
 	private String encounterType;
 	private String visitType;
@@ -65,36 +65,13 @@ public class EncounterFullRepresentation {
 
 	// private String orders;
 	private List<Providers> providers;
-//	@Transient
-//	private List<Observations> observationsReg;
-//	@Transient
-//	private List<Observations> observationsConsultation;
 
-	// private String context;
-	// private String extensions;
 
 	public String getPatientId() {
 		return patientId;
 	}
 
-//	public List<Observations> getObservationsReg() {
-//		return observationsReg;
-//	}
-//
-//
-//	public void setObservationsReg(List<Observations> observationsReg) {
-//		this.observationsReg = observationsReg;
-//	}
-//
-//
-//	public List<Observations> getObservationsConsultation() {
-//		return observationsConsultation;
-//	}
-//
-//
-//	public void setObservationsConsultation(List<Observations> observationsConsultation) {
-//		this.observationsConsultation = observationsConsultation;
-//	}
+
 
 	public void setPatientId(String patientId) {
 		this.patientId = patientId;
