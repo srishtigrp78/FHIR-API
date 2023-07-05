@@ -53,18 +53,7 @@ public class HttpUtils {
 			headers.add("Content-Type", "application/json");
 		}
 	}
-	// public HttpUtils() {
-	// if (rest == null) {
-	// rest = new RestTemplate();
-	// headers = new HttpHeaders();
-	// headers.add("Content-Type", "application/json");
-	// }
-	// }
-
-	// @Bean
-	// public HttpUtils httpUtils() {
-	// return new HttpUtils();
-	// }
+	
 
 	public String get(String uri) {
 		String body;
@@ -73,9 +62,7 @@ public class HttpUtils {
 		setStatus(responseEntity.getStatusCode());
 		// if (status == HttpStatus.OK){
 		body = responseEntity.getBody();
-		// }else{
-		// responseEntity
-		// }
+		
 		return body;
 	}
 
@@ -86,9 +73,7 @@ public class HttpUtils {
 		setStatus(responseEntity.getStatusCode());
 		// if (status == HttpStatus.OK){
 		body = responseEntity.getBody();
-		// }else{
-		// responseEntity
-		// }
+		
 		return body;
 	}
 
@@ -125,7 +110,7 @@ public class HttpUtils {
 		if (header.containsKey(headers.AUTHORIZATION)) {
 			headers.add(headers.AUTHORIZATION, header.get(headers.AUTHORIZATION).toString());
 		}
-		// headers.add("Content-Type", MediaType.APPLICATION_JSON);
+		
 		ResponseEntity<String> responseEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
 		HttpEntity<String> requestEntity;
 		requestEntity = new HttpEntity<String>(data, headers);
@@ -142,7 +127,7 @@ public class HttpUtils {
 		requestEntity = new HttpEntity<String>(data, header);
 		responseEntity = rest.exchange(uri, HttpMethod.POST, requestEntity, String.class);
 		setStatus(responseEntity.getStatusCode());
-		// body = responseEntity.getBody();
+		
 		return responseEntity;
 	}
 
@@ -152,7 +137,7 @@ public class HttpUtils {
 		HttpEntity<String> requestEntity = new HttpEntity<String>("", header);
 		responseEntity = rest.exchange(uri, HttpMethod.GET, requestEntity, String.class);
 		setStatus(responseEntity.getStatusCode());
-		// body = responseEntity.getBody();
+		
 		return responseEntity;
 	}
 
@@ -162,7 +147,7 @@ public class HttpUtils {
 		HttpEntity<String> requestEntity = new HttpEntity<String>("", header);
 		responseEntity = rest.exchange(uri, HttpMethod.GET, requestEntity, byte[].class);
 		setStatus(responseEntity.getStatusCode());
-		// body = responseEntity.getBody();
+		
 		return responseEntity;
 	}
 
@@ -180,11 +165,7 @@ public class HttpUtils {
 	@Deprecated
 	public String postStatusCode(String uri, String data, HttpHeaders header) {
 		HttpStatus statusCode;
-		// HttpHeaders headers = new HttpHeaders();
-//		if (header.containsKey(headers.AUTHORIZATION)) {
-//			headers.add(headers.AUTHORIZATION, header.get(headers.AUTHORIZATION).toString());
-//		}
-		// headers.add("Content-Type", MediaType.APPLICATION_JSON);
+	
 		ResponseEntity<String> responseEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
 		HttpEntity<String> requestEntity;
 		requestEntity = new HttpEntity<String>(data, header);

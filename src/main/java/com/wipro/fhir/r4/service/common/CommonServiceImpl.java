@@ -48,12 +48,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.wipro.fhir.r4.data.healthID.Authorize;
-import com.wipro.fhir.r4.data.healthID.BenHealthIDMapping;
-import com.wipro.fhir.r4.data.healthID.HealthIDResponse;
 import com.wipro.fhir.r4.data.mongo.amrit_resource.AMRIT_ResourceMongo;
 import com.wipro.fhir.r4.data.mongo.amrit_resource.TempCollection;
 import com.wipro.fhir.r4.data.mongo.care_context.CareContexts;
-import com.wipro.fhir.r4.data.mongo.care_context.GenerateOTPForCareContextAndValidate;
 import com.wipro.fhir.r4.data.mongo.care_context.HIP;
 import com.wipro.fhir.r4.data.mongo.care_context.NDHMRequest;
 import com.wipro.fhir.r4.data.mongo.care_context.NDHMResponse;
@@ -62,10 +59,8 @@ import com.wipro.fhir.r4.data.mongo.care_context.PatientCareContexts;
 import com.wipro.fhir.r4.data.mongo.care_context.PatientCareContextsStringOBJ;
 import com.wipro.fhir.r4.data.mongo.care_context.SMSNotify;
 import com.wipro.fhir.r4.data.patient.PatientDemographic;
-import com.wipro.fhir.r4.data.patient.PatientDemographicDetails;
 import com.wipro.fhir.r4.data.patient_data_handler.PatientDemographicModel_NDHM_Patient_Profile;
 import com.wipro.fhir.r4.data.request_handler.PatientEligibleForResourceCreation;
-import com.wipro.fhir.r4.data.request_handler.PatientSearchAPIResponse;
 import com.wipro.fhir.r4.data.request_handler.ResourceRequestHandler;
 import com.wipro.fhir.r4.repo.common.PatientEligibleForResourceCreationRepo;
 import com.wipro.fhir.r4.repo.healthID.BenHealthIDMappingRepo;
@@ -84,7 +79,6 @@ import com.wipro.fhir.r4.service.resource_gateway.OPConsultRecordBundle;
 import com.wipro.fhir.r4.service.resource_gateway.PrescriptionRecordBundle;
 import com.wipro.fhir.r4.utils.exception.FHIRException;
 import com.wipro.fhir.r4.utils.http.HttpUtils;
-import com.wipro.fhir.r4.utils.mapper.InputMapper;
 
 /***
  * 

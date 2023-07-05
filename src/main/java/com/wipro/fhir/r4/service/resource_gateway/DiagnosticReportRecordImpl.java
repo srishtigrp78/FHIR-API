@@ -152,16 +152,7 @@ public class DiagnosticReportRecordImpl implements DiagnosticReportRecord {
 		/***
 		 * bundle addition
 		 */
-//		BundleEntryComponent diagnosticReportLabBEC;
-//		List<BundleEntryComponent> diagnosticReportLabBECList = new ArrayList<Bundle.BundleEntryComponent>();
-//		for (DiagnosticReport drl : diagnosticResourceList) {
-//			diagnosticReportLabBEC = new BundleEntryComponent();
-//			diagnosticReportLabBEC.setFullUrl(drl.getIdElement().getValue()).setResource(drl).getRequest()
-//					.setUrl("DiagnosticReportLab").setMethod(Bundle.HTTPVerb.POST);
-//			diagnosticReportLabBECList.add(diagnosticReportLabBEC);
-//
-//		}
-//		bundle.setEntry(diagnosticReportLabBECList);
+
 
 		bundle.addEntry().setFullUrl(composition.getIdElement().getValue()).setResource(composition).getRequest()
 				.setUrl("composition").setMethod(Bundle.HTTPVerb.POST);

@@ -71,11 +71,10 @@ public class DiagnosticReportResource {
 
 		List<DiagnosticReportDataModel> diagnosticList = diagnosticReportDataModel.getDiagnosticReportList(rsObjList);
 
-//		List<TempCollection> tempObservationListMongo = commonService
-//				.fetchTempResourceFromMongo(resourceRequestHandler);
+
 
 		return generateDiagnosticReportResource(patient, encounter, observationMap, diagnosticList);
-		// return null;
+		
 
 	}
 

@@ -30,7 +30,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,6 @@ import com.wipro.fhir.r4.data.mongo.care_context.NDHMRequest;
 import com.wipro.fhir.r4.data.mongo.care_context.Query;
 import com.wipro.fhir.r4.data.mongo.care_context.Requester;
 import com.wipro.fhir.r4.data.mongo.care_context.ValidateOTPForCareContextAndValidate;
-import com.wipro.fhir.r4.service.common.CommonService;
 import com.wipro.fhir.r4.utils.exception.FHIRException;
 import com.wipro.fhir.r4.utils.http.HttpUtils;
 import com.wipro.fhir.r4.utils.mapper.InputMapper;

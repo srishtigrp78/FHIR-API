@@ -49,10 +49,9 @@ public class Scheduler_Job_Patient_Profile_NDHM implements Job {
 		try {
 			// process resource creation
 			commonService.processPatientProfileCreationAMRIT();
-//				System.out.println("");
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			
 			logger.error("Unexpected error:" , e);
 		}
 		logger.info("Completed job for patient profile creation " + arg0.getClass().getName());

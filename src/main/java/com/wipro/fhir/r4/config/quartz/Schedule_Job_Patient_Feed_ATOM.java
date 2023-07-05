@@ -45,12 +45,11 @@ public class Schedule_Job_Patient_Feed_ATOM implements Job{
 		logger.info("Started job for parsing Patient feed " + arg0.getClass().getName());
 
 		try {
-			// process resource creation
+			
 			patientFeedWorkerService.patientFeedManager();
-//			System.out.println("");
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			
 			logger.error("Unexpected error:" , e);
 		}
 		logger.info("Completed job for parsing Patient feed " + arg0.getClass().getName());

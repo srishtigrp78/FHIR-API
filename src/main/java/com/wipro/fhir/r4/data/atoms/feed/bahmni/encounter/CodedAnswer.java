@@ -33,6 +33,4 @@ public class CodedAnswer {
 	private String hiNormal;
 	private String lowNormal;
 	private Boolean set;
-
-	//private String mappings;
 }

@@ -28,8 +28,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class GroupMembers {
-	//private Date encounterDateTime;
-	//private Date visitStartDateTime;
+	
 	private String targetObsRelation;
 	private List<GroupMembers> groupMembers;
 	private List<Providers> providers;
@@ -55,12 +54,12 @@ public class GroupMembers {
 	private Boolean voided;
 	private String voidReason;
 	private Boolean unknown;
-	//private Date observationDateTime;
+	
 	private String abnormal;
 	private String conceptNameToDisplay;
 	private String orderUuid;
 	private String comment;
-	//private String value;
+	
 	public String getTargetObsRelation() {
 		return targetObsRelation;
 	}

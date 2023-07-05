@@ -21,8 +21,6 @@
 */
 package com.wipro.fhir.r4.data.healthID;
 
-import lombok.Data;
-
 public class MobileOTP {
 	
 	String mobile;

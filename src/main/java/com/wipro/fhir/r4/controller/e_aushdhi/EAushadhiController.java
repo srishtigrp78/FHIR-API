@@ -22,8 +22,6 @@
 package com.wipro.fhir.r4.controller.e_aushdhi;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,7 +40,6 @@ import com.wipro.fhir.r4.service.e_aushdhi.EAushadhiService;
 import com.wipro.fhir.r4.utils.exception.FHIRException;
 import com.wipro.fhir.r4.utils.response.OutputResponse;
 
-import ca.uhn.fhir.util.ArrayUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -75,8 +72,7 @@ public class EAushadhiController {
 				response.setResponse("E-aushadhi Stock Added Successfully");
 
 			} else
-				// throw new FHIRException("E-aushadhi Error while getting store stock
-				// details");
+				
 				response.setError(5000, "E-aushadhi Error while getting store stock details : " + resp);
 
 		} catch (FHIRException e) {
@@ -160,7 +156,7 @@ public class EAushadhiController {
 				throw new FHIRException("Error empty request object");
 
 		} catch (Exception e) {
-			//e.printStackTrace();
+			
 			logger.error("Unexpected error:" , e);
 			response.setError(e);
 

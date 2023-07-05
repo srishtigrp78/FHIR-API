@@ -48,7 +48,7 @@ public class CompositionResource {
 	@Autowired
 	private CommonService commonService;
 
-//	private String UUID;
+
 	private Composition composition;
 
 	public Composition getComposition(Patient patient, Encounter encounter, List<AllergyIntolerance> allergyList,

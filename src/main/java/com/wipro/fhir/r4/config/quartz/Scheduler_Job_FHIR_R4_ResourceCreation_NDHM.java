@@ -54,10 +54,9 @@ public class Scheduler_Job_FHIR_R4_ResourceCreation_NDHM implements Job {
 		try {
 			// process resource creation
 			commonService.processResourceOperation();
-//			System.out.println("");
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			
 			logger.error("Unexpected error:" , e);
 		}
 		logger.info("Completed job for FHIR resource creation " + arg0.getClass().getName());

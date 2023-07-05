@@ -92,7 +92,7 @@ public class AllergyIntoleranceResource {
 
 			allergy = new AllergyIntolerance();
 			allergy.setRecordedDate(obj.getCreatedDate());
-			// UUID = commonService.getUUID();
+			
 
 			// clinical status
 			ccClinicalStatus = new CodeableConcept();

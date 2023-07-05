@@ -107,16 +107,14 @@ public class PatientDataGatewayController {
 
 		OutputResponse response = new OutputResponse();
 		try {
-			// if (ndhm_Patient_Profile_List != null && ndhm_Patient_Profile_List.size() >
-			// 0) {
+			
 			String s = patientDataGatewayService.generatePatientProfileAMRIT_SaveTo_Mongo(Authorization,
 					resourceRequestHandler);
 			if (s != null)
 				response.setResponse(s);
 			else
 				response.setError(5000, "Error in saving data.Please connect with administrator");
-//			} else
-//				response.setError(5000, "Empty data. Please provide patient profiles to save");
+
 		} catch (Exception e) {
 			response.setError(5000, e.getMessage());
 		}

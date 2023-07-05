@@ -179,7 +179,7 @@ public class EAushadhiServiceImpl implements EAushadhiService {
 
 						 ackResp = sendStockAdditionAckToEAushadhi(1,
 						 facilityDet.geteAushadhiFacilityId());
-//						ackResp = "1";
+
 
 						if (ackResp.equals("1")) {
 							e_AusdhFacilityProcessLog.setLastSuccessDate(new Timestamp(System.currentTimeMillis()));
@@ -296,7 +296,7 @@ public class EAushadhiServiceImpl implements EAushadhiService {
 
 						 ackResp = sendStockAdditionAckToEAushadhi(1,
 								 facilityRecords.geteAushadhiFacilityId());
-//						ackResp = "1";
+
 
 						if (ackResp.equals("1")) {
 							e_AusdhFacilityProcessLog.setLastSuccessDate(new Timestamp(System.currentTimeMillis()));
@@ -316,7 +316,7 @@ public class EAushadhiServiceImpl implements EAushadhiService {
 								e_AusdhFacilityProcessLog.setStockUpdateAmrit(true);
 								int countAck = 3;
 								while (countAck > 0) {
-//									ackResp = "1";
+
 									 ackResp = sendStockAdditionAckToEAushadhi(1,
 									 facilityRecords.geteAushadhiFacilityId());
 									if (ackResp.equals("1")) {
@@ -395,12 +395,6 @@ public class EAushadhiServiceImpl implements EAushadhiService {
 				eAushadhiResp = InputMapper.gson().fromJson(responseEAushadhi, EAushadhiResponse[].class);
 
 				logger.info("E-Aushadhi store stock details response" + eAushadhiResp);
-//				if (!(eAushadhiResp.length > 0)) {
-//					if (eAushadhiDummy.equalsIgnoreCase("yes")) {
-//						responseEAushadhi = "[{\"specification\":\"400 mg.\",\"edl\":\"NON-EDL\",\"category\":\"10\",\"itemtypename\":\"Tablet\",\"brandid\":\"10100009\",\"drugname\":\"Albendazole - 400 mg.\",\"inhandqty\":\"1000\",\"batchno\":\"123456\",\"stockstatus\":\"10\",\"expdate\":\"31-AUG-2024\",\"mfgdate\":\"01-SEP-2020\",\"prgid\":\"101\",\"pono\":\"0\",\"cpacode\":\"D0009\"},{\"specification\":\"Tablet- 50mg\",\"edl\":\"EDL\",\"category\":\"10\",\"itemtypename\":\"Tablet\",\"brandid\":\"10100123\",\"drugname\":\"Diclofenac - Tablet- 50mg\",\"inhandqty\":\"5000\",\"batchno\":\"34656\",\"stockstatus\":\"10\",\"expdate\":\"30-SEP-2024\",\"mfgdate\":\"01-OCT-2021\",\"prgid\":\"101\",\"pono\":\"0\",\"cpacode\":\"D0122\"},{\"specification\":\"2.5mg/5ml- 30ml bottle\",\"edl\":\"EDL\",\"category\":\"10\",\"itemtypename\":\"Suspension\",\"brandid\":\"10100179\",\"drugname\":\"Levocetrizine - 2.5mg/5ml- 30ml bottle\",\"inhandqty\":\"1000\",\"batchno\":\"789456\",\"stockstatus\":\"10\",\"expdate\":\"30-NOV-2025\",\"mfgdate\":\"01-NOV-2021\",\"prgid\":\"101\",\"pono\":\"0\",\"cpacode\":\"D0176\"},{\"specification\":\"Tab- 500mg\",\"edl\":\"EDL\",\"category\":\"10\",\"itemtypename\":\"Tablet\",\"brandid\":\"10100233\",\"drugname\":\"Paracetamol Tablets IP - Tab- 500mg\",\"inhandqty\":\"5000\",\"batchno\":\"666666\",\"stockstatus\":\"10\",\"expdate\":\"30-NOV-2023\",\"mfgdate\":\"07-OCT-2021\",\"prgid\":\"101\",\"pono\":\"0\",\"cpacode\":\"D0230\"}]";
-//						eAushadhiResp = InputMapper.gson().fromJson(responseEAushadhi, EAushadhiResponse[].class);
-//					}
-//				}
 
 				if (eAushadhiResp.length > 0) {
 
@@ -610,18 +604,7 @@ public class EAushadhiServiceImpl implements EAushadhiService {
 		Date expDate = formatter.parse(dateValue);
 
 		/** Checking Item Entry is already exist or not */
-//		ItemStockEntry itemStockEntryDetails = itemStockEntryRepo.checkItemEntryExits(amritFacilityID,
-//				addedItemDetails.getItemID(), eAushadhiResp.getBatchno());
-//
-//		if (itemStockEntryDetails != null) {
-//
-//			int isItemEntryUpdated = itemStockEntryRepo.updateItemEntryDetails(
-//					itemStockEntryDetails.getItemStockEntryID(), Integer.parseInt(eAushadhiResp.getInhandqty()),
-//					expDate);
-//
-//			return isItemEntryUpdated;
-//
-//		} else {
+
 		ItemStockEntry entryObj = new ItemStockEntry();
 		entryObj.setFacilityID(amritFacilityID);
 		entryObj.setItemID(addedItemDetails.getItemID());
@@ -822,10 +805,7 @@ public class EAushadhiServiceImpl implements EAushadhiService {
 //				String benAge = patientIssueRepo.getBenAge(patientIssueDet.getBenRegID());
 //				dispenseDetailsMap.put("hstdt_age", benAge);
 
-//				/** Fetching Health ID Details **/
-//				ArrayList<BenHealthIDMapping> healthDetailsList = benHealthIDMappingRepo
-//						.getHealthDetails(patientIssueDet.getBenRegID());
-//				dispenseDetailsMap.put("hststr_patient_healthIdDetails", healthDetailsList);
+
 
 				ArrayList<SyncDispenseDetailsRequest> dispenseDetails = getDrugDispenseDetails(patientIssueDet,
 						facilityDet, facilityDet.geteAushadhiFacilityId());

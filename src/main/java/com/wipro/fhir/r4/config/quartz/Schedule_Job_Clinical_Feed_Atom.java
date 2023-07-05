@@ -47,10 +47,9 @@ public class Schedule_Job_Clinical_Feed_Atom implements Job {
 		try {
 			// process resource creation
 			clinicalFeedWorker.encounterFeedManager();
-//			System.out.println("");
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			
 			logger.error("Unexpected error:" , e);
 		}
 		logger.info("Completed job for parsing clinical feed " + arg0.getClass().getName());

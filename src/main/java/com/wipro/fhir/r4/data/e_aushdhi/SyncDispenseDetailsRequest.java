@@ -99,7 +99,7 @@ public class SyncDispenseDetailsRequest {
 	
 	public SyncDispenseDetailsRequest() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

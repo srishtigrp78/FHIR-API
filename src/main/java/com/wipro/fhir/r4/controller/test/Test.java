@@ -34,7 +34,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.wipro.fhir.r4.data.request_handler.ResourceRequestHandler;
 import com.wipro.fhir.r4.service.atoms.feed.bahmni.ClinicalFeedWorker;
-import com.wipro.fhir.r4.service.resource_gateway.DiagnosticReportRecordImpl;
 import com.wipro.fhir.r4.service.resource_gateway.OPConsultRecordBundle;
 import com.wipro.fhir.r4.service.resource_gateway.OPConsultRecordBundleImpl;
 import com.wipro.fhir.r4.service.resource_gateway.PrescriptionRecordBundleImpl;
@@ -77,8 +76,7 @@ public class Test {
 
 			response.setResponse(s);
 		} catch (Exception e) {
-			// TODO: handle exception\
-			//e.printStackTrace();
+			
 			logger.error("Unexpected error:" , e);
 			System.out.println(e);
 		}

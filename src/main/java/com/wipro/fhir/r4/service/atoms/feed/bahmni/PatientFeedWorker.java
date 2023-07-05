@@ -179,7 +179,7 @@ public class PatientFeedWorker {
 						feedPageSuccess++;
 
 					} catch (HttpClientErrorException e) {
-						// TODO: handle exception
+						
 						logger.error("error in processing entry : " + syndEntry.getUri() + " error_message : "
 								+ e.getMessage());
 
@@ -189,7 +189,7 @@ public class PatientFeedWorker {
 
 						feedPageSuccess++;
 					} catch (FHIRException e) {
-						// TODO: handle exception
+					
 						logger.error("error in processing entry : " + syndEntry.getUri() + " error_message : "
 								+ e.getMessage());
 
@@ -216,13 +216,13 @@ public class PatientFeedWorker {
 
 			} catch (IllegalArgumentException e) {
 				pointer = 0;
-				// TODO: handle exception
+				
 			} catch (FeedException e) {
 				pointer = 0;
-				// TODO: handle exception
+				
 			} catch (IOException e) {
 				pointer = 0;
-				// TODO: handle exception
+				
 			} catch (Exception e) {
 				pointer = 0;
 			}
@@ -305,8 +305,7 @@ public class PatientFeedWorker {
 				feedDataLog.setEntry(syndEntry.toString());
 
 			for (SyndLink link : feedLink) {
-//			System.out.println(link.getRel());
-//			System.out.println(link.getHref());
+
 
 				if (link.getRel() != null && link.getHref() != null) {
 					switch (link.getRel().toLowerCase()) {
@@ -323,7 +322,7 @@ public class PatientFeedWorker {
 						feedDataLog.setLinkPrevArchive(link.getHref());
 						break;
 					default:
-						// System.out.println("temp code");
+						
 					}
 				}
 			}
@@ -332,7 +331,7 @@ public class PatientFeedWorker {
 				feedDataLog.setEntrySuccess(status);
 			if (feedPageCompleteStatus != null)
 				feedDataLog.setFeedSuccess(feedPageCompleteStatus);
-			// System.out.println(feedDataLog);
+			
 			feedDataLog = feedDataLogRepo.save(feedDataLog);
 		} catch (Exception e) {
 			logger.info("Error while saving log:" + e.getMessage());
@@ -382,8 +381,7 @@ public class PatientFeedWorker {
 							lastName = null;
 						patient.setLastName(lastName);
 						patient.setName(data.getPerson().getPreferredName().getDisplay());
-//					patient.setName(data.getPerson().getPreferredName().getGivenName() + " "
-//							+ data.getPerson().getPreferredName().getFamilyName());
+
 					}
 					if (data.getPerson().getBirthdate() != null) {
 						Calendar cal = Calendar.getInstance();
@@ -392,9 +390,7 @@ public class PatientFeedWorker {
 						patient.setMonthOfBirth(String.valueOf(cal.get(Calendar.MONTH) + 1));
 						patient.setDayOfBirth(String.valueOf(cal.get(Calendar.DATE)));
 
-//					patient.setDayOfBirth(String.valueOf(data.getPerson().getBirthdate().getDay()));
-//					patient.setMonthOfBirth(String.valueOf(data.getPerson().getBirthdate().getMonth()));
-//					patient.setYearOfBirth(String.valueOf(data.getPerson().getBirthdate().getYear()));
+
 					}
 					patient.setIdentifiers(patientIdentifier);
 					Address add = patient.new Address();

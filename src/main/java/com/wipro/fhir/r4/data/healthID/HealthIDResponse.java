@@ -106,12 +106,10 @@ public class HealthIDResponse {
 	@Expose
 	@Column(name = "authMethods")
 	String authMethod;
-//	@Expose
-//	@Column(name = "tags")
-//	String tags;
+
 	@Transient
     List<String> authMethods;
-	// Boolean new;
+	
 	@Column(name = "Deleted", insertable = false, updatable = true)
 	private Boolean deleted = false;
 	@Expose
@@ -127,13 +125,7 @@ public class HealthIDResponse {
 	private String modifiedBy;
 	@Column(name = "LastModDate", insertable = false, updatable = false)
 	private Timestamp lastModDate;
-    //Boolean new;
-//	public String getToken() {
-//		return token;
-//	}
-//	public void setToken(String token) {
-//		this.token = token;
-//	}
+    
 	
 	@Expose
 	@Column(name = "TxnID")

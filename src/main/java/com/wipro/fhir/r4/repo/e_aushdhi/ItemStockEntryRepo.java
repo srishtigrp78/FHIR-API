@@ -41,13 +41,6 @@ public interface ItemStockEntryRepo extends CrudRepository<ItemStockEntry, Integ
 	public ItemStockEntry checkItemEntryExits(@Param("amritFacilityID") Integer amritFacilityID,
 			@Param("itemId") Integer itemId, @Param("batchno") String batchno);
 
-//	@Transactional
-//	@Modifying
-//	@Query("update ItemStockEntry set quantity=:inhandqty, "
-//			+ " quantityInHand=:inhandqty, expiryDate=:expDate where "
-//			+ "itemStockEntryID=:itemStockEntryID")
-//	public int updateItemEntryDetails(@Param("itemStockEntryID") Long itemStockEntryID,
-//			@Param("inhandqty") Integer inhandqty, @Param("expDate") Date expDate);
 
 	@Transactional
 	@Modifying
