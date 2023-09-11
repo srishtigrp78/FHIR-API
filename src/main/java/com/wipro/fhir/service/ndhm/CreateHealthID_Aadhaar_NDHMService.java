@@ -32,4 +32,6 @@ public interface CreateHealthID_Aadhaar_NDHMService {
 	public HealthIDResponse createHealthIDWithUID(String request) throws FHIRException;
 	public String checkAndGenerateMobileOTP(String request) throws FHIRException;
 	String verifyMobileOTP(String request) throws FHIRException;
+	public String verifyBio(String request) throws FHIRException;
+	public String generateMobileOTP(String request) throws FHIRException;
 }

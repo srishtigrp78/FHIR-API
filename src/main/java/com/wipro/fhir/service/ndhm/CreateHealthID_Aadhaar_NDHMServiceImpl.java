@@ -44,6 +44,7 @@ import com.wipro.fhir.data.healthID.HealthIDRequestAadhar;
 import com.wipro.fhir.data.healthID.HealthIDResponse;
 import com.wipro.fhir.data.healthID.MobileOTP;
 import com.wipro.fhir.data.healthID.SendOTP;
+import com.wipro.fhir.data.healthID.VerifyBio;
 import com.wipro.fhir.data.healthID.VerifyOTP;
 import com.wipro.fhir.utils.exception.FHIRException;
 import com.wipro.fhir.utils.http.HttpUtils;
@@ -74,6 +75,12 @@ public class CreateHealthID_Aadhaar_NDHMServiceImpl implements CreateHealthID_Aa
 	
 	@Value("${abdmVerifyMobileOTP}")
 	private String abdmVerifyMobileOTP;
+	
+	@Value("${abdmVerifyBio}")
+	private String abdmVerifyBio;
+	
+	@Value("${abdmGenerateMobileOTP}")
+	private String abdmGenerateMobileOTP;
 	
 	@Autowired
 	private HttpUtils httpUtils;
@@ -293,5 +300,74 @@ public class CreateHealthID_Aadhaar_NDHMServiceImpl implements CreateHealthID_Aa
 		}
 		return health;
 	}
+	//New api for verify bio
+	@Override
+	public String verifyBio(String request) throws FHIRException {
+		String res = null;
+		Map<String, String> responseMap = new HashMap<String, String>();
+		try {
+			String ndhmAuthToken = generateSession_NDHM.getNDHMAuthToken();
+			VerifyBio obj = InputMapper.gson().fromJson(request, VerifyBio.class);
+			String requestOBJ = new Gson().toJson(obj);
+			logger.info("NDHM_FHIR-VerifyBio API request Obj " + requestOBJ);
+			HttpHeaders headers = common_NDHMService.getHeaders(ndhmAuthToken);
+			ResponseEntity<String> responseEntity = httpUtils.postWithResponseEntity(abdmVerifyBio,
+					requestOBJ, headers);
+			String responseStrLogin = common_NDHMService.getBody(responseEntity);
+			if (responseStrLogin != null) {
+				JsonObject jsnOBJ = new JsonObject();
+				JsonParser jsnParser = new JsonParser();
+				JsonElement jsnElmnt = jsnParser.parse(responseStrLogin);
+				jsnOBJ = jsnElmnt.getAsJsonObject();
+				String txnId = jsnOBJ.get("txnId").getAsString();
+				//responseMap.put("aadhaar", obj.getAadhaar());
+				responseMap.put("txnId", txnId);
+				res = new Gson().toJson(responseMap);
+			} else
+				res = "NDHM_FHIR Error while verifying Bio";// throw w
+		}
+		/**
+		 * @author SH20094090
+		 * @purpose To get response body in case of exception
+		 */
+			
+		catch (Exception e) {
+			throw new FHIRException("NDHM_FHIR Error while accessing VerifyBio" + e.getMessage());
+		}
+		return res;
+	}
+	
+   //method for generateMobileOTP
+	@Override
+	public String generateMobileOTP(String request) throws FHIRException {
+		String res = null;
+		Map<String, String> resMap = new HashMap<String, String>();
+		try {
+			String ndhmAuthToken = generateSession_NDHM.getNDHMAuthToken();
+			MobileOTP obj = InputMapper.gson().fromJson(request, MobileOTP.class);
+			String reqObj = new Gson().toJson(obj);
+			logger.info("NDHM_FHIR verfiy ADBM API with Generate mobile OTP " + reqObj);
 
+			HttpHeaders headers = common_NDHMService.getHeaders(ndhmAuthToken);
+			ResponseEntity<String> responseEntity = httpUtils.postWithResponseEntity(abdmGenerateMobileOTP, reqObj,
+					headers);
+			String responseStrLogin = common_NDHMService.getBody(responseEntity);
+			if (responseStrLogin != null && responseEntity.getStatusCodeValue() == 200) {
+				JsonObject jsnOBJ = new JsonObject();
+				JsonParser jsnParser = new JsonParser();
+				JsonElement jsnElmnt = jsnParser.parse(responseStrLogin);
+				jsnOBJ = jsnElmnt.getAsJsonObject();
+				// String mobileLinked = jsnOBJ.get("mobileLinked").getAsString();
+				// resMap.put("mobileLinked", jsnOBJ.get("mobileLinked").getAsString());
+				resMap.put("tnxId", jsnOBJ.get("txnId").getAsString());
+				res = new Gson().toJson(resMap);
+
+			} else
+				throw new FHIRException("NDHM_FHIR Error while checking and generating mobile OTP");
+
+		} catch (Exception e) {
+			throw new FHIRException("NDHM_FHIR Error while accessing ABHA API" + e);
+		}
+		return res;
+	}
 }
