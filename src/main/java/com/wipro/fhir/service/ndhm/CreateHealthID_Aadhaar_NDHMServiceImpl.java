@@ -38,6 +38,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.wipro.fhir.data.healthID.ConfirmAadhaarBio;
 import com.wipro.fhir.data.healthID.Details;
 import com.wipro.fhir.data.healthID.HealthIDException;
 import com.wipro.fhir.data.healthID.HealthIDRequestAadhar;
@@ -81,6 +82,9 @@ public class CreateHealthID_Aadhaar_NDHMServiceImpl implements CreateHealthID_Aa
 	
 	@Value("${abdmGenerateMobileOTP}")
 	private String abdmGenerateMobileOTP;
+	
+	@Value("${abdmConfirmAadhaarBio}")
+	private String abdmConfirmAadhaarBio;
 	
 	@Autowired
 	private HttpUtils httpUtils;
@@ -370,4 +374,41 @@ public class CreateHealthID_Aadhaar_NDHMServiceImpl implements CreateHealthID_Aa
 		}
 		return res;
 	}
+	
+	//New api for confirm Aadhaar bio
+		@Override
+		public String confirmWithAadhaarBio(String request) throws FHIRException {
+			String res = null;
+			Map<String, String> responseMap = new HashMap<String, String>();
+			try {
+				String ndhmAuthToken = generateSession_NDHM.getNDHMAuthToken();
+				ConfirmAadhaarBio obj = InputMapper.gson().fromJson(request, ConfirmAadhaarBio.class);
+				String requestOBJ = new Gson().toJson(obj);
+				logger.info("NDHM_FHIR-confirm Aadhaar bio API request Obj " + requestOBJ);
+				HttpHeaders headers = common_NDHMService.getHeaders(ndhmAuthToken);
+				ResponseEntity<String> responseEntity = httpUtils.postWithResponseEntity(abdmConfirmAadhaarBio,
+						requestOBJ, headers);
+				String responseStrLogin = common_NDHMService.getBody(responseEntity);
+				if (responseStrLogin != null) {
+					JsonObject jsnOBJ = new JsonObject();
+					JsonParser jsnParser = new JsonParser();
+					JsonElement jsnElmnt = jsnParser.parse(responseStrLogin);
+					jsnOBJ = jsnElmnt.getAsJsonObject();
+					String X_Token = jsnOBJ.get("x-token").getAsString();
+					//responseMap.put("aadhaar", obj.getAadhaar());
+					responseMap.put("x-token", X_Token);
+					res = new Gson().toJson(responseMap);
+				} else
+					res = "NDHM_FHIR Error while confirm Aadhaar bio";// throw w
+			}
+			/**
+			 * @author SH20094090
+			 * @purpose To get response body in case of exception
+			 */
+				
+			catch (Exception e) {
+				throw new FHIRException("NDHM_FHIR Error while accessing confirm Aadhaar bio" + e.getMessage());
+			}
+			return res;
+		}
 }
