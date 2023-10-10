@@ -46,4 +46,17 @@ public class HealthIDWithBioServiceImpl implements HealthIDWithBioService{
 	}
 	 
 
+	@Override
+	public String confirmWithAadhaarBio(String request) throws FHIRException {
+		String response = null;
+		try {
+			if (request != null ) {
+			  response = createHealthID_Aadhaar_NDHMService.confirmWithAadhaarBio(request);
+		} else
+			throw new FHIRException("NDHM_FHIR Error while Verifying Bio");
+	} catch (Exception e) {
+			throw new FHIRException(e.getMessage());
+		}
+		return response;
+	}
 }

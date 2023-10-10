@@ -73,4 +73,26 @@ public class CreateHealthIDWithBio {
 		return response.toString();
 	}
 
+	@CrossOrigin
+	@ApiOperation(value = "Confirm with Aadhaar Bio", consumes = "application/json", produces = "application/json")
+	@RequestMapping(value = { "/confirmWithAadhaarBio" }, method = { RequestMethod.POST })
+	public String confirmWithAadhaarBio(@ApiParam(value = "{\"txnId\":\"String\", \"pid\":\"String\",\"bioType\":\"String\",\"authType\":\"String\"}") @RequestBody String request,
+			@RequestHeader(value = "Authorization") String Authorization) {
+
+		OutputResponse response = new OutputResponse();
+		logger.info("NDHM_FHIR Confirm Aadhaar Bio API request" + request);
+		try {
+			if (request != null) {
+				String s = healthIDWithBioService.confirmWithAadhaarBio(request);
+				response.setResponse(s);
+			} else
+				throw new FHIRException("NDHM_FHIR Empty request object");
+
+		} catch (FHIRException e) {
+			response.setError(5000, e.getMessage());
+			logger.error(e.toString());
+		}
+		logger.info("NDHM_FHIR Confirm Aadhaar Bio API response" + response.toString());
+		return response.toString();
+	}
 }
