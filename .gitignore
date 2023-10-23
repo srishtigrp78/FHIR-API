@@ -51,3 +51,4 @@ Thumbs.db
 mvnw
 mvnw.cmd
 /bin
+src/main/environment/common_local.properties
