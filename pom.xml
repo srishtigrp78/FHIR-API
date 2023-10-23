@@ -32,7 +32,7 @@
 		<environment>${ENV_VAR}</environment>
 		<target-properties>target/classes/application.properties
 		</target-properties>
-		<source-properties>target/classes/environment/common_${environment}.properties
+		<source-properties>target/classes/common_${environment}.properties
 		</source-properties>
 		<hostname-test>10.208.122.38</hostname-test>
 		<port-test>9990</port-test>
