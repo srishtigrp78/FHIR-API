@@ -24,7 +24,7 @@ This microservice is built on Java, Spring boot framework and MySQL DB.
 * Redis
 * MySQL Database
 
-## Building From Source
+## Installation and local env setup
 
 1. Clone the repository to your local machine.
 2. Install the required dependencies and build the module using the following command:
