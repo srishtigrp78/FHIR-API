@@ -20,17 +20,20 @@ This microservice is built on Java, Spring boot framework and MySQL DB.
 ### Prerequisites 
 * JDK 1.8
 * Maven 
-
-$ ./mvn clean install
-
-## Installation
-This service has been tested on Wildfly as the application server.
-
-### Prerequisites 
 * Wildfly (or any compatible app server)
 * Redis
 * MySQL Database
 
+## Installation and local env setup
+
+1. Clone the repository to your local machine.
+2. Install the required dependencies and build the module using the following command:
+- Execute the following command:
+  ```
+  mvn clean install
+  ```
+3. You can copy `common_example.properties` to `common_local.properties` and edit the file accordingly. The file is under `src/main/environment` folder.
+4. Run the spring server with local configuration `mvn spring-boot:run -DENV_VAR=local`
 
 ## Usage
 All features have been exposed as REST endpoints. Refer to the SWAGGER API specification for details.
