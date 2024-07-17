@@ -8,46 +8,44 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.context.annotation.Description;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import com.google.gson.Gson;
 import com.wipro.fhir.data.healthID.HealthIDResponse;
 import com.wipro.fhir.repo.healthID.HealthIDRepo;
 import com.wipro.fhir.service.ndhm.CreateHealthID_MobileOTP_NDHMService;
 import com.wipro.fhir.utils.exception.FHIRException;
 import com.wipro.fhir.utils.http.HttpUtils;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-@ContextConfiguration(classes = {HealthID_WithMobileOTPServiceImpl.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class HealthID_WithMobileOTPServiceImplDiffblueTest {
-    @MockBean
+class HealthID_WithMobileOTPServiceImplTest {
+    @Mock
     private CreateHealthID_MobileOTP_NDHMService createHealthID_MobileOTP_NDHMService;
 
-    @MockBean
+    @Mock
     private HealthIDRepo healthIDRepo;
 
-    @Autowired
+    @InjectMocks
     private HealthID_WithMobileOTPServiceImpl healthID_WithMobileOTPServiceImpl;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
+    
+    @Mock
+    private Gson gson;
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#generateOTP(String)}
-     */
     @Test
-    void testGenerateOTP() throws FHIRException {
+    @Description("Tests successful generation and delivery of a One-Time Password (OTP) (TC_GenerateOTP_Success_001)")
+    void testGenerateOTP_Success() throws FHIRException {
         // Arrange
         when(createHealthID_MobileOTP_NDHMService.generateOTP(Mockito.<String>any())).thenReturn("Generate OTP");
 
@@ -59,12 +57,9 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         assertEquals("Generate OTP", actualGenerateOTPResult);
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#generateOTP(String)}
-     */
     @Test
-    void testGenerateOTP2() throws FHIRException {
+    @Description("Tests handling of invalid phone number format during OTP generation (TC_GenerateOTP_InvalidPhoneNumber_002)")
+    void testGenerateOTP_OTPValidationFailure() throws FHIRException {
         // Arrange
         when(createHealthID_MobileOTP_NDHMService.generateOTP(Mockito.<String>any())).thenReturn(null);
 
@@ -73,12 +68,9 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         verify(createHealthID_MobileOTP_NDHMService).generateOTP(eq("Request"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#generateOTP(String)}
-     */
     @Test
-    void testGenerateOTP3() throws FHIRException {
+    @Description("Tests handling of exceptions during OTP generation (TC_GenerateOTP_Exception_003)")
+    void testGenerateOTP_Exception() throws FHIRException {
         // Arrange
         when(createHealthID_MobileOTP_NDHMService.generateOTP(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));
@@ -87,11 +79,7 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         assertThrows(FHIRException.class, () -> healthID_WithMobileOTPServiceImpl.generateOTP("Request"));
         verify(createHealthID_MobileOTP_NDHMService).generateOTP(eq("Request"));
     }
-
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#verifyOTPandGenerateHealthID(String)}
-     */
+   
     @Test
     void testVerifyOTPandGenerateHealthID() throws FHIRException {
         // Arrange, Act and Assert
@@ -101,10 +89,6 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
                 () -> healthID_WithMobileOTPServiceImpl.verifyOTPandGenerateHealthID("NDHM_FHIR Error while validating OTP"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#verifyOTPandGenerateHealthID(String)}
-     */
     @Test
     void testVerifyOTPandGenerateHealthID2() throws FHIRException {
         // Arrange
@@ -149,10 +133,6 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         verify(createHealthID_MobileOTP_NDHMService).validateOTP(eq(""));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#verifyOTPandGenerateHealthID(String)}
-     */
     @Test
     void testVerifyOTPandGenerateHealthID3() throws FHIRException {
         // Arrange
@@ -166,10 +146,6 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         verify(createHealthID_MobileOTP_NDHMService).validateOTP(eq(""));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#verifyOTPandGenerateHealthID(String)}
-     */
     @Test
     void testVerifyOTPandGenerateHealthID4() throws FHIRException {
         // Arrange
@@ -217,10 +193,6 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         verify(createHealthID_MobileOTP_NDHMService).validateOTP(eq(""));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#verifyOTPandGenerateHealthID(String)}
-     */
     @Test
     void testVerifyOTPandGenerateHealthID5() throws FHIRException {
         // Arrange
@@ -231,10 +203,6 @@ class HealthID_WithMobileOTPServiceImplDiffblueTest {
         verify(createHealthID_MobileOTP_NDHMService).validateOTP(eq(""));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthID_WithMobileOTPServiceImpl#verifyOTPandGenerateHealthID(String)}
-     */
     @Test
     void testVerifyOTPandGenerateHealthID6() throws FHIRException {
         // Arrange

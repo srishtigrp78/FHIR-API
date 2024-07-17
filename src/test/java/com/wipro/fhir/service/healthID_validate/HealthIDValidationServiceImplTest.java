@@ -6,41 +6,36 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.context.annotation.Description;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import com.wipro.fhir.service.healthID.HealthIDServiceImpl;
 import com.wipro.fhir.service.ndhm.ValidateHealthID_NDHMService;
 import com.wipro.fhir.utils.exception.FHIRException;
 import com.wipro.fhir.utils.http.HttpUtils;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {HealthIDValidationServiceImpl.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class HealthIDValidationServiceImplDiffblueTest {
-    @MockBean
+class HealthIDValidationServiceImplTest {
+    @Mock
     private HealthIDServiceImpl healthIDServiceImpl;
 
-    @Autowired
+    @InjectMocks
     private HealthIDValidationServiceImpl healthIDValidationServiceImpl;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    @MockBean
+    @Mock
     private ValidateHealthID_NDHMService validateHealthID_NDHMService;
 
-    /**
-     * Method under test:
-     * {@link HealthIDValidationServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
-    void testGenerateOTPForHealthIDValidation() throws FHIRException {
+    @Description(" Tests successful generation of a One-Time Password (OTP) specifically for Health ID validation. (TC_GenerateOTPForHealthIDValidation_Success_001)")
+    void testGenerateOTPForHealthIDValidation_Success() throws FHIRException {
         // Arrange
         when(validateHealthID_NDHMService.generateOTPForHealthIDValidation(Mockito.<String>any()))
                 .thenReturn("Generate OTPFor Health IDValidation");
@@ -54,12 +49,9 @@ class HealthIDValidationServiceImplDiffblueTest {
         assertEquals("Generate OTPFor Health IDValidation", actualGenerateOTPForHealthIDValidationResult);
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDValidationServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
-    void testGenerateOTPForHealthIDValidation2() throws FHIRException {
+    @Description(" Tests handling of a scenario where the OTP generation dependency returns a null response. (TC_GenerateOTPForHealthIDValidation_NullOtpResponse_002)")
+    void testGenerateOTPForHealthIDValidation_NullOtpResponse() throws FHIRException {
         // Arrange
         when(validateHealthID_NDHMService.generateOTPForHealthIDValidation(Mockito.<String>any())).thenReturn(null);
 
@@ -68,12 +60,9 @@ class HealthIDValidationServiceImplDiffblueTest {
         verify(validateHealthID_NDHMService).generateOTPForHealthIDValidation(eq("Request"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDValidationServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
-    void testGenerateOTPForHealthIDValidation3() throws FHIRException {
+    @Description("Tests handling of exceptions during OTP generation for Health ID validation (e.g., unexpected errors in your service logic). (TC_GenerateOTPForHealthIDValidation_Exception_003)")
+    void testGenerateOTPForHealthIDValidation_Exception() throws FHIRException {
         // Arrange
         when(validateHealthID_NDHMService.generateOTPForHealthIDValidation(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));
@@ -83,12 +72,9 @@ class HealthIDValidationServiceImplDiffblueTest {
         verify(validateHealthID_NDHMService).generateOTPForHealthIDValidation(eq("Request"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDValidationServiceImpl#validateOTPAndHealthID(String)}
-     */
     @Test
-    void testValidateOTPAndHealthID() throws FHIRException {
+    @Description("Tests successful validation of a provided OTP and a corresponding Health ID. (TC_ValidateOTPAndHealthID_Success_001)")
+    void testValidateOTPAndHealthID_Success() throws FHIRException {
         // Arrange
         when(validateHealthID_NDHMService.validateOTPForHealthIDValidation(Mockito.<String>any())).thenReturn("2020-03-01");
 
@@ -100,12 +86,9 @@ class HealthIDValidationServiceImplDiffblueTest {
         assertEquals("2020-03-01", actualValidateOTPAndHealthIDResult);
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDValidationServiceImpl#validateOTPAndHealthID(String)}
-     */
     @Test
-    void testValidateOTPAndHealthID2() throws FHIRException {
+    @Description("Tests handling of a scenario where the Health ID validation dependency returns a null response. (TC_ValidateOTPAndHealthID_NullOtpResponse_002)")
+    void testValidateOTPAndHealthID_NullOtpResponse() throws FHIRException {
         // Arrange
         when(validateHealthID_NDHMService.validateOTPForHealthIDValidation(Mockito.<String>any())).thenReturn(null);
 
@@ -114,12 +97,9 @@ class HealthIDValidationServiceImplDiffblueTest {
         verify(validateHealthID_NDHMService).validateOTPForHealthIDValidation(eq("Request"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDValidationServiceImpl#validateOTPAndHealthID(String)}
-     */
     @Test
-    void testValidateOTPAndHealthID3() throws FHIRException {
+    @Description("Tests handling of exceptions during OTP and Health ID validation (e.g., unexpected errors in your service logic, network issues). (TC_ValidateOTPAndHealthID_Exception_003)")
+    void testValidateOTPAndHealthID_Exception() throws FHIRException {
         // Arrange
         when(validateHealthID_NDHMService.validateOTPForHealthIDValidation(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));

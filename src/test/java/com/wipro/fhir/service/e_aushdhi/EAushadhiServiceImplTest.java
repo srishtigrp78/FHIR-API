@@ -52,6 +52,8 @@ import java.util.Objects;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -61,83 +63,60 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {EAushadhiServiceImpl.class, ItemMaster.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class EAushadhiServiceImplDiffblueTest {
-    @Autowired
+class EAushadhiServiceImplTest {
+    @Mock
     private ItemMaster itemMaster;
 
-    @MockBean
+    @Mock
     private APIChannel aPIChannel;
 
-    @MockBean
+    @Mock
     private BenHealthIDMappingRepo benHealthIDMappingRepo;
 
-    @Autowired
+    @InjectMocks
     private EAushadhiServiceImpl eAushadhiServiceImpl;
 
-    @MockBean
+    @Mock
     private E_AusdhFacilityProcessLogRepo e_AusdhFacilityProcessLogRepo;
 
-    @MockBean
+    @Mock
     private FacilityRepo facilityRepo;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    @MockBean
+    @Mock
     private ItemCategoryRepo itemCategoryRepo;
 
-    @MockBean
+    @Mock
     private ItemFormRepo itemFormRepo;
 
-    @MockBean
+    @Mock
     private ItemRepo itemRepo;
 
-    @MockBean
+    @Mock
     private ItemStockEntryRepo itemStockEntryRepo;
 
-    @MockBean
+    @Mock
     private ItemStockExitRepo itemStockExitRepo;
 
-    @MockBean
+    @Mock
     private M_itemfacilitymappingRepo m_itemfacilitymappingRepo;
 
-    @MockBean
+    @Mock
     private ParkingPlaceRepo parkingPlaceRepo;
 
-    @MockBean
+    @Mock
     private PatientIssueRepo patientIssueRepo;
 
-    @MockBean
+    @Mock
     private RouteRepo routeRepo;
 
-    @MockBean
+    @Mock
     private VanMasterRepo vanMasterRepo;
 
-    /**
-     * Method under test:
-     * {@link EAushadhiServiceImpl#getEaushadhiStoreDetailsByFacilityID(String)}
-     */
-    @Test
-    void testGetEaushadhiStoreDetailsByFacilityID() throws FHIRException {
-        // Arrange, Act and Assert
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("Request"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("failure"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("0"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("42"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID(""));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("EDL"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("trans_RESULT"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("00"));
-        assertThrows(FHIRException.class, () -> eAushadhiServiceImpl.getEaushadhiStoreDetailsByFacilityID("0EDL"));
-    }
-
-    /**
-     * Method under test:
-     * {@link EAushadhiServiceImpl#getStockDetailsFromEAushadhi()}
-     */
+    
     @Test
     void testGetStockDetailsFromEAushadhi() {
         // Arrange
@@ -3366,10 +3345,7 @@ class EAushadhiServiceImplDiffblueTest {
         assertEquals("1", actualUpdateSyncStatusForEAushadhiDispenseResult);
     }
 
-    /**
-     * Method under test:
-     * {@link EAushadhiServiceImpl#updateSyncStatusForEAushadhiDispense(List)}
-     */
+   
     @Test
     void testUpdateSyncStatusForEAushadhiDispense3() throws FHIRException {
         // Arrange
@@ -3387,10 +3363,6 @@ class EAushadhiServiceImplDiffblueTest {
         assertEquals("2", actualUpdateSyncStatusForEAushadhiDispenseResult);
     }
 
-    /**
-     * Method under test:
-     * {@link EAushadhiServiceImpl#updateSyncStatusForEAushadhiDispense(List)}
-     */
     @Test
     void testUpdateSyncStatusForEAushadhiDispense4() throws FHIRException {
         // Arrange

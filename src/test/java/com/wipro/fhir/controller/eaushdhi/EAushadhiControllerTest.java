@@ -1,5 +1,6 @@
 package com.wipro.fhir.controller.eaushdhi;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.annotation.Description;
 
 import com.google.gson.Gson;
 import com.wipro.fhir.data.e_aushdhi.E_AusdhFacilityProcessLog;
@@ -31,6 +34,7 @@ class EAushadhiControllerTest {
 	EAushadhiService eAushadhiService;
 
 	@Test
+	@Description("Tests retrieval of stock details for a specific store (TC_GetStoreStockDetails_Success_001)")
 	void getStoreStockDetailsTest() throws FHIRException {
 
 		String request = "E-aushadhi Stock Added Successfully";
@@ -47,6 +51,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of exceptions during stock retrieval (TC_GetStoreStockDetails_Exception_002)")
 	void getStoreStockDetailsTestElsePart() throws FHIRException {
 
 		String request = "{\"facilityID\":123}";
@@ -65,6 +70,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of exceptions during stock retrieval (TC_GetStoreStockDetails_Exception_003)")
 	void getStoreStockDetailsTest_Exception() throws Exception {
 
 		String Authorization = "Authorization";
@@ -79,6 +85,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests successful synchronization of drug dispense data and patient details (TC_SyncDrugDispenseAndPatientDetails_Success_001)")
 	void syncDrugDispenseAndPatientDetailsTest() throws FHIRException {
 
 		String request = "{\"eAushadhiFacilityId\":123,\"pageNo\":12}";
@@ -100,6 +107,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of FHIR exception during drug dispense and patient details synchronization (TC_SyncDrugDispenseAndPatientDetails_FHIRE_002)")
 	void syncDrugDispenseAndPatientDetailsTestThrowsFHIRException() throws Exception {
 
 		String Authorization = "Authorization";
@@ -115,6 +123,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of generic exceptions during drug dispense and patient details synchronization (TC_SyncDrugDispenseAndPatientDetails_Exception_003)")
 	void syncDrugDispenseAndPatientDetailsTest_Exception() throws Exception {
 
 		String Authorization = "Authorization";
@@ -130,6 +139,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests successful retrieval of facility stock process log (TC_GetFacilityStockProcessLog_Success_001)")
 	void getFacilityStockProcessLogTest() throws FHIRException {
 
 		M_Facility facilityDetails = new M_Facility();
@@ -183,6 +193,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of FHIR exception during facility stock process log retrieval (TC_GetFacilityStockProcessLog_FHIRE_002)")
 	void getFacilityStockProcessLogTestThrowsFHIRException() throws Exception {
 
 		String request = null;
@@ -195,6 +206,7 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of generic exceptions during facility stock process log retrieval (TC_GetFacilityStockProcessLog_Exception_003)")
 	void getFacilityStockProcessLogTest_Exception() throws Exception {
 
 		String request = "{\"statusCode\":5000,\"errorMessage\":\"Failed with generic error\",\"status\":\"FAILURE\"}";
@@ -207,26 +219,32 @@ class EAushadhiControllerTest {
 	}
 
 	@Test
-	void addFacilityTest() throws FHIRException {
+	@Description("Tests successful addition of a new facility (TC_AddFacility_Success_001)")
+	public void testAddFacilitySuccess() throws FHIRException {
+	    // Arrange
+	    String requestJson = "[\"issue1\", \"issue2\"]";
+	    String expectedResponse = "Sync status updated successfully"; // Expected message from the service
 
-		OutputResponse response = new OutputResponse();
+	    Mockito.when(eAushadhiService.updateSyncStatusForEAushadhiDispense(Mockito.anyList())).thenReturn(expectedResponse);
 
-		String request = "request";
-		
-		String jsonStringArray = request;
-		
-		
+	    // Act
+	    String response = eAushadhiController.addFacility(requestJson);
 
-		List<String> syncedIssueDetails = new ArrayList<>();
+	    // Assert
+	    assertTrue(response.contains(expectedResponse), "Response should contain the success message");
+	}
+	
+	@Test
+	@Description("Tests handling of empty request for adding a facility (TC_AddFacility_EmptyRequest_002)")
+	public void testAddFacilityEmptyRequest() {
+	    // Arrange
+	    String requestJson = "[]";
 
-		syncedIssueDetails.add(request);
+	    // Act
+	    String response = eAushadhiController.addFacility(requestJson);
 
-		String s = request;
-
-		response.setResponse(s);
-
-		Assertions.assertNotNull(request);
-
+	    // Assert
+	    assertFalse(response.contains("Unexpected error:"), "Response should indicate an unexpected error occurred");
 	}
 
 }

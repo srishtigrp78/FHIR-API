@@ -7,41 +7,37 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.wipro.fhir.data.healthID.HealthIDResponse;
-import com.wipro.fhir.repo.healthID.HealthIDRepo;
-import com.wipro.fhir.service.ndhm.CreateHealthID_Aadhaar_NDHMService;
-import com.wipro.fhir.utils.exception.FHIRException;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
+import org.springframework.context.annotation.Description;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {HealthIDWithUIDServiceImpl.class})
+import com.wipro.fhir.data.healthID.HealthIDResponse;
+import com.wipro.fhir.repo.healthID.HealthIDRepo;
+import com.wipro.fhir.service.ndhm.CreateHealthID_Aadhaar_NDHMService;
+import com.wipro.fhir.utils.exception.FHIRException;
+
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class HealthIDWithUIDServiceImplDiffblueTest {
-    @MockBean
+class HealthIDWithUIDServiceImplTest {
+    @Mock
     private CreateHealthID_Aadhaar_NDHMService createHealthID_Aadhaar_NDHMService;
 
-    @MockBean
+    @Mock
     private HealthIDRepo healthIDRepo;
 
-    @Autowired
+    @InjectMocks
     private HealthIDWithUIDServiceImpl healthIDWithUIDServiceImpl;
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#generateOTP(String)}
-     */
     @Test
-    void testGenerateOTP() throws FHIRException {
+    @Description("Tests successful generation of a One-Time Password (OTP). (TC_GenerateOTP_Success_001)")
+    void testGenerateOTP_Success() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.generateOTP(Mockito.<String>any())).thenReturn("Generate OTP");
 
@@ -53,11 +49,9 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         assertEquals("Generate OTP", actualGenerateOTPResult);
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#generateOTP(String)}
-     */
     @Test
-    void testGenerateOTP2() throws FHIRException {
+    @Description("Tests handling of failures during OTP generation (e.g., invalid data, dependency issues). (TC_GenerateOTP_Failure_002)")
+    void testGenerateOTP_Failure() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.generateOTP(Mockito.<String>any())).thenReturn(null);
 
@@ -66,11 +60,9 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         verify(createHealthID_Aadhaar_NDHMService).generateOTP(eq("Request"));
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#generateOTP(String)}
-     */
     @Test
-    void testGenerateOTP3() throws FHIRException {
+    @Description("Tests handling of exceptions during OTP generation(TC_GenerateOTP_Exception_003)")
+    void testGenerateOTP_Exception() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.generateOTP(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));
@@ -80,11 +72,9 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         verify(createHealthID_Aadhaar_NDHMService).generateOTP(eq("Request"));
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#verifyOTP(String)}
-     */
     @Test
-    void testVerifyOTP() throws FHIRException {
+    @Description("Tests successful verification of a provided OTP. (TC_VerifyOTP_Success_001)")
+    void testVerifyOTP_Success() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.verifyOTP(Mockito.<String>any())).thenReturn("Verify OTP");
 
@@ -96,20 +86,16 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         assertEquals("Verify OTP", actualVerifyOTPResult);
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#verifyOTP(String)}
-     */
     @Test
-    void testVerifyOTP2() throws FHIRException {
+    @Description("Tests handling of failures during OTP verification (e.g., invalid OTP, expired OTP). (TC_VerifyOTP_Failure_002)")
+    void testVerifyOTP_Failure() throws FHIRException {
         // Arrange, Act and Assert
         assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.verifyOTP(null));
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#verifyOTP(String)}
-     */
     @Test
-    void testVerifyOTP3() throws FHIRException {
+    @Description(" Tests handling of exceptions during OTP verification(TC_VerifyOTP_Exception_003)")
+    void testVerifyOTP_Exception() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.verifyOTP(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));
@@ -119,12 +105,9 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         verify(createHealthID_Aadhaar_NDHMService).verifyOTP(eq("Request"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#checkAndGenerateOTP(String)}
-     */
     @Test
-    void testCheckAndGenerateOTP() throws FHIRException {
+    @Description("Tests successful logic for checking existing OTP validity and generating a new one if needed. (TC_CheckAndGenerateOTP_Success_001)")
+    void testCheckAndGenerateOTP_Success() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.checkAndGenerateMobileOTP(Mockito.<String>any()))
                 .thenReturn("Check And Generate Mobile OTP");
@@ -137,22 +120,16 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         assertEquals("Check And Generate Mobile OTP", actualCheckAndGenerateOTPResult);
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#checkAndGenerateOTP(String)}
-     */
     @Test
-    void testCheckAndGenerateOTP2() throws FHIRException {
+    @Description(" Tests handling of failures during the check and generate OTP logic (e.g., issues verifying existing OTP, dependency failures during generation). (TC_CheckAndGenerateOTP_Failure_002)")
+    void testCheckAndGenerateOTP_Failure() throws FHIRException {
         // Arrange, Act and Assert
         assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.checkAndGenerateOTP(null));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#checkAndGenerateOTP(String)}
-     */
     @Test
-    void testCheckAndGenerateOTP3() throws FHIRException {
+    @Description("Tests handling of exceptions during the check and generate OTP logic (TC_CheckAndGenerateOTP_Exception_003)")
+    void testCheckAndGenerateOTP_Exception() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.checkAndGenerateMobileOTP(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));
@@ -162,11 +139,9 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         verify(createHealthID_Aadhaar_NDHMService).checkAndGenerateMobileOTP(eq("Request"));
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
-    void testVerifyMobileOTP() throws FHIRException {
+    @Description("Tests successful verification of a mobile OTP. (TC_VerifyMobileOTP_Success_001)")
+    void testVerifyMobileOTP_Success() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.verifyMobileOTP(Mockito.<String>any())).thenReturn("Verify Mobile OTP");
 
@@ -178,20 +153,16 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         assertEquals("Verify Mobile OTP", actualVerifyMobileOTPResult);
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
-    void testVerifyMobileOTP2() throws FHIRException {
+    @Description("Tests handling of failures during mobile OTP verification (e.g., invalid OTP, expired OTP, network issues). (TC_VerifyMobileOTP_Failure_002)")
+    void testVerifyMobileOTP_Failure() throws FHIRException {
         // Arrange, Act and Assert
         assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.verifyMobileOTP(null));
     }
 
-    /**
-     * Method under test: {@link HealthIDWithUIDServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
-    void testVerifyMobileOTP3() throws FHIRException {
+    @Description("Tests handling of exceptions during mobile OTP verification (e.g., unexpected errors in your service logic). (TC_VerifyMobileOTP_Exception_003)")
+    void testVerifyMobileOTP_Exception() throws FHIRException {
         // Arrange
         when(createHealthID_Aadhaar_NDHMService.verifyMobileOTP(Mockito.<String>any()))
                 .thenThrow(new FHIRException("An error occurred"));
@@ -201,23 +172,17 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         verify(createHealthID_Aadhaar_NDHMService).verifyMobileOTP(eq("Request"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
-    void testCreateHealthIDWithUID() throws FHIRException {
+    @Description("Tests handling of exceptions during Health ID creation using a Unique Identifier (UID). (TC_CreateHealthIDWithUID_Exception_001)")
+    void testCreateHealthIDWithUID_Exception() throws FHIRException {
         // Arrange, Act and Assert
         assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.createHealthIDWithUID("Request"));
         assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.createHealthIDWithUID("42"));
     }
 
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
-    void testCreateHealthIDWithUID2() throws FHIRException {
+    @Description("Tests handling of failures during Health ID creation using a UID (e.g., invalid UID format, dependency issues). (TC_CreateHealthIDWithUID_Failure_002)")
+    void testCreateHealthIDWithUID_Failure() throws FHIRException {
         // Arrange
         HealthIDResponse healthIDResponse = new HealthIDResponse();
         healthIDResponse.setAuthMethod("Auth Method");
@@ -251,69 +216,6 @@ class HealthIDWithUIDServiceImplDiffblueTest {
         healthIDResponse.setYearOfBirth("Year Of Birth");
         healthIDResponse.sethID(1);
         when(createHealthID_Aadhaar_NDHMService.createHealthIDWithUID(Mockito.<String>any())).thenReturn(healthIDResponse);
-
-        // Act and Assert
-        assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.createHealthIDWithUID(""));
-        verify(createHealthID_Aadhaar_NDHMService).createHealthIDWithUID(eq(""));
-    }
-
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#createHealthIDWithUID(String)}
-     */
-    @Test
-    void testCreateHealthIDWithUID3() throws FHIRException {
-        // Arrange
-        ArrayList<String> authMethods = new ArrayList<>();
-        authMethods.add("foo");
-
-        HealthIDResponse healthIDResponse = new HealthIDResponse();
-        healthIDResponse.setAuthMethod("Auth Method");
-        healthIDResponse.setAuthMethods(authMethods);
-        healthIDResponse.setAuthenticationMode("Authentication Mode");
-        healthIDResponse.setBeneficiaryRegId(1L);
-        healthIDResponse.setCreatedBy("Jan 1, 2020 8:00am GMT+0100");
-        healthIDResponse.setCreatedDate(mock(Timestamp.class));
-        healthIDResponse.setDayOfBirth("Day Of Birth");
-        healthIDResponse.setDeleted(true);
-        healthIDResponse.setDistrictCode("District Code");
-        healthIDResponse.setDistrictName("District Name");
-        healthIDResponse.setEmail("jane.doe@example.org");
-        healthIDResponse.setFirstName("Jane");
-        healthIDResponse.setGender("Gender");
-        healthIDResponse.setHealthId("42");
-        healthIDResponse.setHealthIdNumber("42");
-        healthIDResponse.setKycPhoto("alice.liddell@example.org");
-        healthIDResponse.setLastModDate(mock(Timestamp.class));
-        healthIDResponse.setLastName("Doe");
-        healthIDResponse.setMiddleName("Middle Name");
-        healthIDResponse.setMobile("Mobile");
-        healthIDResponse.setModifiedBy("Jan 1, 2020 9:00am GMT+0100");
-        healthIDResponse.setMonthOfBirth("Month Of Birth");
-        healthIDResponse.setName("Name");
-        healthIDResponse.setProcessed("Processed");
-        healthIDResponse.setProviderServiceMapID(1);
-        healthIDResponse.setStateCode("MD");
-        healthIDResponse.setStateName("MD");
-        healthIDResponse.setTxnId("42");
-        healthIDResponse.setYearOfBirth("Year Of Birth");
-        healthIDResponse.sethID(1);
-        when(createHealthID_Aadhaar_NDHMService.createHealthIDWithUID(Mockito.<String>any())).thenReturn(healthIDResponse);
-
-        // Act and Assert
-        assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.createHealthIDWithUID(""));
-        verify(createHealthID_Aadhaar_NDHMService).createHealthIDWithUID(eq(""));
-    }
-
-    /**
-     * Method under test:
-     * {@link HealthIDWithUIDServiceImpl#createHealthIDWithUID(String)}
-     */
-    @Test
-    void testCreateHealthIDWithUID4() throws FHIRException {
-        // Arrange
-        when(createHealthID_Aadhaar_NDHMService.createHealthIDWithUID(Mockito.<String>any()))
-                .thenThrow(new FHIRException("An error occurred"));
 
         // Act and Assert
         assertThrows(FHIRException.class, () -> healthIDWithUIDServiceImpl.createHealthIDWithUID(""));

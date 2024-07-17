@@ -3,13 +3,27 @@ package com.wipro.fhir.controller.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
-import com.wipro.fhir.data.request_handler.ResourceRequestHandler;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-class TestDiffblueTest {
-    /**
-     * Method under test: {@link Test#parseFeeds(ResourceRequestHandler, String)}
-     */
-    @org.junit.jupiter.api.Test
+import com.wipro.fhir.data.request_handler.ResourceRequestHandler;
+import com.wipro.fhir.service.resource_gateway.OPConsultRecordBundleImpl;
+import com.wipro.fhir.utils.http.HttpUtils;
+@ExtendWith(SpringExtension.class)
+class TestTest {
+	
+	@InjectMocks
+	private Test test;
+	
+	@Mock
+	HttpUtils httpUtils;
+	
+	@Mock
+	private OPConsultRecordBundleImpl oPConsultRecordBundleImpl;
+	
+	@org.junit.jupiter.api.Test
     void testParseFeeds() {
         //   Diffblue Cover was unable to create a Spring-specific test for this Spring method.
 
@@ -21,9 +35,6 @@ class TestDiffblueTest {
                 test.parseFeeds(new ResourceRequestHandler(), "JaneDoe"));
     }
 
-    /**
-     * Method under test: {@link Test#parseFeeds(ResourceRequestHandler, String)}
-     */
     @org.junit.jupiter.api.Test
     void testParseFeeds2() {
         //   Diffblue Cover was unable to create a Spring-specific test for this Spring method.

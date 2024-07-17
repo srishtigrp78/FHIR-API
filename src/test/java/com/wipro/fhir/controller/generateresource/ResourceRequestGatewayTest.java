@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.context.annotation.Description;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.wipro.fhir.data.request_handler.ResourceRequestHandler;
@@ -30,6 +31,7 @@ class ResourceRequestGatewayTest {
 	private DiagnosticReportRecord diagnosticReportRecord;
 
 	@Test
+	@Description("Tests successful retrieval of a patient resource by ID (TC_GetPatientResource_Success_001)")
 	void testGetPatientResource() throws Exception {
 
 		ResourceRequestHandler patientResourceRequest = new ResourceRequestHandler();
@@ -66,6 +68,7 @@ class ResourceRequestGatewayTest {
 	}
 
 	@Test
+	@Description("Tests handling of exceptions during patient resource retrieval (TC_GetPatientResource_Exception_002)")
 	void testGetPatientResource_Exception() throws FHIRException {
 
 		OutputResponse response = new OutputResponse();
@@ -86,6 +89,7 @@ class ResourceRequestGatewayTest {
 	}
 
 	@Test
+	@Description("Tests successful retrieval of a diagnostic report record by ID (TC_GetDiagnosticReportRecord_Success_001)")
 	void testGetDiagnosticReportRecord() throws Exception {
 
 		ResourceRequestHandler patientResourceRequest = new ResourceRequestHandler();
@@ -122,6 +126,7 @@ class ResourceRequestGatewayTest {
 	}
 
 	@Test
+	@Description("Tests handling of FHIR exceptions during diagnostic report record retrieval (TC_GetDiagnosticReportRecord_Exception_002)")
 	void testGetDiagnosticReportRecord_DiagnosticReportRecordThrowsFHIRException() throws Exception {
 
 		OutputResponse response = new OutputResponse();
@@ -143,6 +148,7 @@ class ResourceRequestGatewayTest {
 	}
 
 	@Test
+	@Description("Tests successful retrieval of a prescription record by ID (TC_GetPrescriptionRecord_Success_001)")
 	void testGetPrescriptionRecord() throws Exception {
 
 		ResourceRequestHandler patientResourceRequest = new ResourceRequestHandler();
@@ -179,6 +185,7 @@ class ResourceRequestGatewayTest {
 	}
 
 	@Test
+	@Description("Tests handling of FHIRE exceptions during prescription record retrieval (TC_GetPrescriptionRecord_Exception_002)")
 	void testGetPrescriptionRecord_PrescriptionRecordBundleThrowsFHIRException() throws Exception {
 		
 		OutputResponse response = new OutputResponse();

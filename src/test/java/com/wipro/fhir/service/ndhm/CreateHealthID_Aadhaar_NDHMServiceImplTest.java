@@ -7,40 +7,33 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import com.wipro.fhir.data.healthID.HealthIDResponse;
 import com.wipro.fhir.utils.exception.FHIRException;
 import com.wipro.fhir.utils.http.HttpUtils;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {CreateHealthID_Aadhaar_NDHMServiceImpl.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
-    @MockBean
+class CreateHealthID_Aadhaar_NDHMServiceImplTest {
+    @Mock
     private Common_NDHMService common_NDHMService;
 
-    @Autowired
+    @InjectMocks
     private CreateHealthID_Aadhaar_NDHMServiceImpl createHealthID_Aadhaar_NDHMServiceImpl;
 
-    @MockBean
+    @Mock
     private GenerateSession_NDHMService generateSession_NDHMService;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP() throws FHIRException {
         // Arrange
@@ -51,10 +44,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP2() throws FHIRException {
         // Arrange
@@ -65,10 +54,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP3() throws FHIRException {
         // Arrange
@@ -88,10 +73,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP4() throws FHIRException {
         // Arrange
@@ -111,10 +92,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP5() throws FHIRException {
         // Arrange
@@ -134,10 +111,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP6() throws FHIRException {
         // Arrange
@@ -157,10 +130,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP() throws FHIRException {
         // Arrange
@@ -171,10 +140,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP2() throws FHIRException {
         // Arrange
@@ -185,10 +150,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP3() throws FHIRException {
         // Arrange
@@ -208,10 +169,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP4() throws FHIRException {
         // Arrange
@@ -234,10 +191,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP5() throws FHIRException {
         // Arrange
@@ -257,10 +210,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP6() throws FHIRException {
         // Arrange
@@ -283,10 +232,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP7() throws FHIRException {
         // Arrange
@@ -309,10 +254,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP8() throws FHIRException {
         // Arrange
@@ -323,10 +264,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP9() throws FHIRException {
         // Arrange
@@ -349,10 +286,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP10() throws FHIRException {
         // Arrange
@@ -375,10 +308,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyOTP(String)}
-     */
     @Test
     void testVerifyOTP11() throws FHIRException {
         // Arrange
@@ -401,10 +330,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP() throws FHIRException {
         // Arrange
@@ -416,10 +341,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP2() throws FHIRException {
         // Arrange
@@ -430,10 +351,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP3() throws FHIRException {
         // Arrange
@@ -453,10 +370,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP4() throws FHIRException {
         // Arrange
@@ -479,10 +392,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP5() throws FHIRException {
         // Arrange
@@ -502,10 +411,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP6() throws FHIRException {
         // Arrange
@@ -528,10 +433,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP7() throws FHIRException {
         // Arrange
@@ -554,10 +455,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP8() throws FHIRException {
         // Arrange
@@ -568,10 +465,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP9() throws FHIRException {
         // Arrange
@@ -594,10 +487,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP10() throws FHIRException {
         // Arrange
@@ -620,10 +509,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#checkAndGenerateMobileOTP(String)}
-     */
     @Test
     void testCheckAndGenerateMobileOTP11() throws FHIRException {
         // Arrange
@@ -646,10 +531,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP() throws FHIRException {
         // Arrange
@@ -660,10 +541,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP2() throws FHIRException {
         // Arrange
@@ -674,10 +551,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP3() throws FHIRException {
         // Arrange
@@ -697,10 +570,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP4() throws FHIRException {
         // Arrange
@@ -723,10 +592,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP5() throws FHIRException {
         // Arrange
@@ -746,10 +611,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP6() throws FHIRException {
         // Arrange
@@ -772,10 +633,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP7() throws FHIRException {
         // Arrange
@@ -798,10 +655,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP8() throws FHIRException {
         // Arrange
@@ -812,10 +665,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP9() throws FHIRException {
         // Arrange
@@ -838,10 +687,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP10() throws FHIRException {
         // Arrange
@@ -864,10 +709,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyMobileOTP(String)}
-     */
     @Test
     void testVerifyMobileOTP11() throws FHIRException {
         // Arrange
@@ -890,10 +731,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
     void testCreateHealthIDWithUID() throws FHIRException {
         // Arrange
@@ -904,10 +741,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
     void testCreateHealthIDWithUID2() throws FHIRException {
         // Arrange
@@ -918,10 +751,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
     void testCreateHealthIDWithUID3() throws FHIRException {
         // Arrange
@@ -932,10 +761,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
     void testCreateHealthIDWithUID4() throws FHIRException {
         // Arrange
@@ -955,10 +780,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
     void testCreateHealthIDWithUID5() throws FHIRException {
         // Arrange
@@ -978,10 +799,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#createHealthIDWithUID(String)}
-     */
     @Test
     void testCreateHealthIDWithUID6() throws FHIRException {
         // Arrange
@@ -1005,10 +822,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         assertNull(actualCreateHealthIDWithUIDResult);
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyBio(String)}
-     */
     @Test
     void testVerifyBio() throws FHIRException {
         // Arrange
@@ -1019,10 +832,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyBio(String)}
-     */
     @Test
     void testVerifyBio2() throws FHIRException {
         // Arrange
@@ -1033,10 +842,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyBio(String)}
-     */
     @Test
     void testVerifyBio3() throws FHIRException {
         // Arrange
@@ -1056,10 +861,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyBio(String)}
-     */
     @Test
     void testVerifyBio4() throws FHIRException {
         // Arrange
@@ -1079,10 +880,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyBio(String)}
-     */
     @Test
     void testVerifyBio5() throws FHIRException {
         // Arrange
@@ -1102,10 +899,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#verifyBio(String)}
-     */
     @Test
     void testVerifyBio6() throws FHIRException {
         // Arrange
@@ -1125,10 +918,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP() throws FHIRException {
         // Arrange
@@ -1139,10 +928,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP2() throws FHIRException {
         // Arrange
@@ -1153,10 +938,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP3() throws FHIRException {
         // Arrange
@@ -1176,10 +957,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP4() throws FHIRException {
         // Arrange
@@ -1202,10 +979,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP5() throws FHIRException {
         // Arrange
@@ -1225,10 +998,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP6() throws FHIRException {
         // Arrange
@@ -1251,10 +1020,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP7() throws FHIRException {
         // Arrange
@@ -1277,10 +1042,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP8() throws FHIRException {
         // Arrange
@@ -1291,10 +1052,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP9() throws FHIRException {
         // Arrange
@@ -1317,10 +1074,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP10() throws FHIRException {
         // Arrange
@@ -1343,10 +1096,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#generateMobileOTP(String)}
-     */
     @Test
     void testGenerateMobileOTP11() throws FHIRException {
         // Arrange
@@ -1369,10 +1118,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(responseEntity).getStatusCodeValue();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#confirmWithAadhaarBio(String)}
-     */
     @Test
     void testConfirmWithAadhaarBio() throws FHIRException {
         // Arrange
@@ -1383,10 +1128,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#confirmWithAadhaarBio(String)}
-     */
     @Test
     void testConfirmWithAadhaarBio2() throws FHIRException {
         // Arrange
@@ -1397,10 +1138,7 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#confirmWithAadhaarBio(String)}
-     */
+    
     @Test
     void testConfirmWithAadhaarBio3() throws FHIRException {
         // Arrange
@@ -1419,10 +1157,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#confirmWithAadhaarBio(String)}
-     */
     @Test
     void testConfirmWithAadhaarBio4() throws FHIRException {
         // Arrange
@@ -1441,10 +1175,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#confirmWithAadhaarBio(String)}
-     */
     @Test
     void testConfirmWithAadhaarBio5() throws FHIRException {
         // Arrange
@@ -1463,10 +1193,6 @@ class CreateHealthID_Aadhaar_NDHMServiceImplDiffblueTest {
                 eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_Aadhaar_NDHMServiceImpl#confirmWithAadhaarBio(String)}
-     */
     @Test
     void testConfirmWithAadhaarBio6() throws FHIRException {
         // Arrange

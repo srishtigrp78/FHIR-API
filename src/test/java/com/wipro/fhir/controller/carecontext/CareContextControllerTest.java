@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.annotation.Description;
 
 import com.wipro.fhir.service.care_context.CareContextService;
 import com.wipro.fhir.utils.exception.FHIRException;
@@ -23,6 +24,7 @@ class CareContextControllerTest {
 	CareContextService careContextService;
 
 	@Test
+	@Description("Tests successful generation of a One-Time Password (TC_GenerateOTP_Success_001)")
 	void generateOTPTest() throws FHIRException {
 
 		OutputResponse response = new OutputResponse();
@@ -42,6 +44,7 @@ class CareContextControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of FHIRE exception in CareContext service during OTP generation (TC_GenerateOTP_CareContextFHIRE_002)")
 	void testGenerateOTP_CareContextServiceThrowsFHIRException() throws Exception {
 
 		String Authorization = "Authorization";
@@ -56,6 +59,7 @@ class CareContextControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of generic exceptions during OTP generation (TC_GenerateOTP_Exception_003)")
 	void testGenerateOTP_Exception() throws Exception {
 
 		String Authorization = "Authorization";
@@ -70,6 +74,7 @@ class CareContextControllerTest {
 	}
 
 	@Test
+	@Description("Tests successful validation of OTP and creation of CareContext (TC_ValidateOTPAndCreateCareContext_Success_001)")
 	void validateOTPAndCreateCareContextTest() throws FHIRException {
 
 		OutputResponse response = new OutputResponse();
@@ -91,6 +96,7 @@ class CareContextControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of FHIRE exception during CareContext creation (TC_ValidateOTPAndCreateCareContext_FHIRE_002)")
 	void testValidateOTPAndCreateCareContextThrowsFHIRException() throws Exception {
 
 		String Authorization = "Authorization";
@@ -106,6 +112,7 @@ class CareContextControllerTest {
 	}
 
 	@Test
+	@Description("Tests handling of generic exceptions during OTP validation and CareContext creation (TC_ValidateOTPAndCreateCareContext_Exception_003)")
 	void testValidateOTPAndCreateCareContext_Exception() throws Exception {
 
 		String Authorization = "Authorization";
@@ -121,6 +128,7 @@ class CareContextControllerTest {
 	}
 
 	@Test
+	@Description("Tests successful saving of CareContext to MongoDB (TC_SaveCareContextToMongo_Success_001)")
 	void saveCareContextToMongoTest() throws FHIRException {
 
 		String Authorization = "Authorization";
