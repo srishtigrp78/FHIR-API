@@ -32,6 +32,8 @@ import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.StringType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -39,35 +41,29 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {PatientResource.class, ResourceRequestHandler.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class PatientResourceDiffblueTest {
-    @MockBean
+class PatientResourceTest {
+    @Mock
     private APIChannel aPIChannel;
 
-    @MockBean
+    @Mock
     private BenHealthIDMappingRepo benHealthIDMappingRepo;
 
-    @MockBean
+    @Mock
     private CommonServiceImpl commonServiceImpl;
 
-    @MockBean
+    @Mock
     private PatientDemographic patientDemographic;
 
-    @MockBean
+    @Mock
     private PatientEligibleForResourceCreationRepo patientEligibleForResourceCreationRepo;
 
-    @Autowired
+    @InjectMocks
     private PatientResource patientResource;
 
-    @Autowired
+    @Mock
     private ResourceRequestHandler resourceRequestHandler;
 
-    /**
-     * Method under test:
-     * {@link PatientResource#getPatientResource(ResourceRequestHandler)}
-     */
     @Test
     void testGetPatientResource() throws FHIRException {
         // Arrange
@@ -129,10 +125,6 @@ class PatientResourceDiffblueTest {
         assertTrue(birthDateElement.hasPrimitiveValue());
     }
 
-    /**
-     * Method under test:
-     * {@link PatientResource#getPatientResource(ResourceRequestHandler)}
-     */
     @Test
     void testGetPatientResource2() throws FHIRException {
         // Arrange

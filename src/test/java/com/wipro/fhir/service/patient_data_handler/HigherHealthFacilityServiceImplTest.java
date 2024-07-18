@@ -12,6 +12,20 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import com.wipro.fhir.data.atoms.feed.bahmni.encounter.BahmniDiagnoses;
 import com.wipro.fhir.data.atoms.feed.bahmni.encounter.DrugOrders;
 import com.wipro.fhir.data.atoms.feed.bahmni.encounter.EncounterFullRepresentation;
@@ -25,41 +39,20 @@ import com.wipro.fhir.repo.atoms.feed.bahmni.encounter.EncounterFullRepresentati
 import com.wipro.fhir.repo.patient_data_handler.PatientDemographicModel_NDHM_Patient_Profile_Repo;
 import com.wipro.fhir.utils.exception.FHIRException;
 
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-@ContextConfiguration(classes = {HigherHealthFacilityServiceImpl.class, ResourceRequestHandler.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class HigherHealthFacilityServiceImplDiffblueTest {
-    @MockBean
+class HigherHealthFacilityServiceImplTest {
+    @Mock
     private EncounterFullRepresentationRepo encounterFullRepresentationRepo;
 
-    @Autowired
+    @InjectMocks
     private HigherHealthFacilityServiceImpl higherHealthFacilityServiceImpl;
 
-    @MockBean
+    @Mock
     private PatientDemographicModel_NDHM_Patient_Profile_Repo patientDemographicModel_NDHM_Patient_Profile_Repo;
 
     @Autowired
     private ResourceRequestHandler resourceRequestHandler;
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#updateBengenIDToHigherHealthFacilityBeneficiary(ResourceRequestHandler)}
-     */
     @Test
     void testUpdateBengenIDToHigherHealthFacilityBeneficiary() throws FHIRException {
         // Arrange
@@ -79,10 +72,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertEquals("Beneficiary ID updated successfully", actualUpdateBengenIDToHigherHealthFacilityBeneficiaryResult);
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getCLinicalDataHigherhealthFacility(ResourceRequestHandler)}
-     */
     @Test
     void testGetCLinicalDataHigherhealthFacility() throws FHIRException {
         // Arrange
@@ -98,10 +87,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertEquals("[]", actualCLinicalDataHigherhealthFacility);
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getCLinicalDataHigherhealthFacility(ResourceRequestHandler)}
-     */
     @Test
     void testGetCLinicalDataHigherhealthFacility2() throws FHIRException {
         // Arrange
@@ -211,10 +196,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertEquals("[]", actualCLinicalDataHigherhealthFacility);
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getCLinicalDataHigherhealthFacility(ResourceRequestHandler)}
-     */
     @Test
     void testGetCLinicalDataHigherhealthFacility3() throws FHIRException {
         // Arrange
@@ -357,10 +338,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getCLinicalDataHigherhealthFacility(ResourceRequestHandler)}
-     */
     @Test
     void testGetCLinicalDataHigherhealthFacility4() throws FHIRException {
         // Arrange
@@ -527,20 +504,12 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData() {
         // Arrange, Act and Assert
         assertTrue(higherHealthFacilityServiceImpl.getVisitWiseEncounterData(new ArrayList<>()).isEmpty());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData2() {
         // Arrange
@@ -587,10 +556,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData3() {
         // Arrange
@@ -661,10 +626,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData4() {
         // Arrange
@@ -710,10 +671,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData5() {
         // Arrange
@@ -759,10 +716,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData6() {
         // Arrange
@@ -808,10 +761,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData7() {
         // Arrange
@@ -845,10 +794,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertEquals(1, higherHealthFacilityServiceImpl.getVisitWiseEncounterData(resultList).size());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData8() {
         // Arrange
@@ -922,10 +867,6 @@ class HigherHealthFacilityServiceImplDiffblueTest {
         assertSame(encounterDateTime, visitWiseEncounterData.getEncounterDateTime());
     }
 
-    /**
-     * Method under test:
-     * {@link HigherHealthFacilityServiceImpl#getVisitWiseEncounterData(List)}
-     */
     @Test
     void testGetVisitWiseEncounterData9() {
         // Arrange

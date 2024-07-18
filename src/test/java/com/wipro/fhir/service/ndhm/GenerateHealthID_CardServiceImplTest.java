@@ -7,42 +7,34 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.wipro.fhir.utils.exception.FHIRException;
-import com.wipro.fhir.utils.http.HttpUtils;
-
 import java.io.UnsupportedEncodingException;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {GenerateHealthID_CardServiceImpl.class})
+import com.wipro.fhir.utils.exception.FHIRException;
+import com.wipro.fhir.utils.http.HttpUtils;
+
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class GenerateHealthID_CardServiceImplDiffblueTest {
-    @MockBean
+class GenerateHealthID_CardServiceImplTest {
+    @Mock
     private Common_NDHMService common_NDHMService;
 
-    @Autowired
+    @InjectMocks
     private GenerateHealthID_CardServiceImpl generateHealthID_CardServiceImpl;
 
-    @MockBean
+    @Mock
     private GenerateSession_NDHMService generateSession_NDHMService;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP() throws FHIRException {
         // Arrange
@@ -53,10 +45,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP2() throws FHIRException {
         // Arrange
@@ -67,10 +55,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP3() throws FHIRException {
         // Arrange
@@ -81,10 +65,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP4() throws FHIRException {
         // Arrange
@@ -95,10 +75,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP5() throws FHIRException {
         // Arrange
@@ -109,10 +85,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP() throws FHIRException {
         // Arrange
@@ -123,10 +95,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP2() throws FHIRException {
         // Arrange
@@ -137,10 +105,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP3() throws FHIRException {
         // Arrange
@@ -151,10 +115,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP4() throws FHIRException {
         // Arrange
@@ -165,10 +125,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP5() throws FHIRException {
         // Arrange
@@ -179,10 +135,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP6() throws FHIRException {
         // Arrange
@@ -193,10 +145,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateCard(String, String)}
-     */
     @Test
     void testGenerateCard() throws FHIRException {
         // Arrange
@@ -212,10 +160,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         verify(httpUtils).getWithResponseEntityByte(eq("${generateHealthCard}"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateCard(String, String)}
-     */
     @Test
     void testGenerateCard2() throws FHIRException, UnsupportedEncodingException {
         // Arrange
@@ -238,10 +182,6 @@ class GenerateHealthID_CardServiceImplDiffblueTest {
         assertEquals("QVhBWEFYQVg=", actualGenerateCardResult);
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateHealthID_CardServiceImpl#generateCard(String, String)}
-     */
     @Test
     void testGenerateCard3() throws FHIRException {
         // Arrange

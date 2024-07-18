@@ -10,6 +10,23 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import com.wipro.fhir.data.patient_data_handler.PatientDemographicModel_NDHM_Patient_Profile;
 import com.wipro.fhir.data.patient_data_handler.TRG_PatientResourceData;
 import com.wipro.fhir.data.request_handler.ResourceRequestHandler;
@@ -20,63 +37,35 @@ import com.wipro.fhir.service.api_channel.APIChannel;
 import com.wipro.fhir.service.common.CommonService;
 import com.wipro.fhir.utils.exception.FHIRException;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-@ContextConfiguration(classes = {PatientDataGatewayServiceImpl.class, ResourceRequestHandler.class})
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class PatientDataGatewayServiceImplDiffblueTest {
+class PatientDataGatewayServiceImplTest {
     @Autowired
     private ResourceRequestHandler resourceRequestHandler;
 
-    @MockBean
+    @Mock
     private APIChannel aPIChannel;
 
-    @MockBean
+    @Mock
     private BenHealthIDMappingRepo benHealthIDMappingRepo;
 
-    @MockBean
+    @Mock
     private CommonService commonService;
 
-    @Autowired
+    @InjectMocks
     private PatientDataGatewayServiceImpl patientDataGatewayServiceImpl;
 
-    @MockBean
+    @Mock
     private PatientDemographicModel_NDHM_Patient_Profile_Repo patientDemographicModel_NDHM_Patient_Profile_Repo;
 
-    @MockBean
+    @Mock
     private TRG_PatientResourceData_Repo tRG_PatientResourceData_Repo;
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#feedPatientProfileToMongoDB(List)}
-     */
     @Test
     void testFeedPatientProfileToMongoDB() throws FHIRException {
         // Arrange, Act and Assert
         assertNull(patientDataGatewayServiceImpl.feedPatientProfileToMongoDB(new ArrayList<>()));
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#feedPatientProfileToMongoDB(List)}
-     */
     @Test
     void testFeedPatientProfileToMongoDB2() throws FHIRException {
         // Arrange
@@ -187,10 +176,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertSame(patientDemographicModel_NDHM_Patient_ProfileList, actualFeedPatientProfileToMongoDBResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#feedPatientProfileToMongoDB(List)}
-     */
     @Test
     void testFeedPatientProfileToMongoDB3() throws FHIRException {
         // Arrange
@@ -391,10 +376,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertSame(patientDemographicModel_NDHM_Patient_ProfileList, actualFeedPatientProfileToMongoDBResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo() throws FHIRException {
         // Arrange
@@ -409,10 +390,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo2() throws FHIRException {
         // Arrange
@@ -448,10 +425,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo3() throws FHIRException {
         // Arrange
@@ -486,10 +459,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo4() throws FHIRException {
         // Arrange
@@ -524,10 +493,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo5() throws FHIRException {
         // Arrange
@@ -562,10 +527,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo6() throws FHIRException {
         // Arrange
@@ -600,10 +561,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo7() throws FHIRException {
         // Arrange
@@ -727,10 +684,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo8() throws FHIRException {
         // Arrange
@@ -763,10 +716,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo9() throws FHIRException {
         // Arrange
@@ -781,10 +730,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo10() throws FHIRException {
         // Arrange
@@ -820,10 +765,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo11() throws FHIRException {
         // Arrange
@@ -858,10 +799,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo12() throws FHIRException {
         // Arrange
@@ -896,10 +833,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo13() throws FHIRException {
         // Arrange
@@ -934,10 +867,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo14() throws FHIRException {
         // Arrange
@@ -972,10 +901,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo15() throws FHIRException {
         // Arrange
@@ -1099,10 +1024,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#generatePatientProfileAMRIT_SaveTo_Mongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testGeneratePatientProfileAMRIT_SaveTo_Mongo16() throws FHIRException {
         // Arrange
@@ -1135,10 +1056,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertEquals("null", actualGeneratePatientProfileAMRIT_SaveTo_MongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testSearchPatientProfileMongo() throws FHIRException {
         // Arrange
@@ -1154,10 +1071,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertNull(actualSearchPatientProfileMongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testSearchPatientProfileMongo2() throws FHIRException {
         // Arrange
@@ -1262,10 +1175,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         verify(commonService).searchPatientProfileFromMongo(Mockito.<ResourceRequestHandler>any());
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testSearchPatientProfileMongo3() throws FHIRException {
         // Arrange
@@ -1460,10 +1369,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         verify(commonService).searchPatientProfileFromMongo(Mockito.<ResourceRequestHandler>any());
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testSearchPatientProfileMongo4() throws FHIRException {
         // Arrange
@@ -1478,10 +1383,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertNull(actualSearchPatientProfileMongoResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongo(String, ResourceRequestHandler)}
-     */
     @Test
     void testSearchPatientProfileMongo5() throws FHIRException {
         // Arrange
@@ -1494,10 +1395,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         verify(commonService).searchPatientProfileFromMongo(Mockito.<ResourceRequestHandler>any());
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongoPagination(Integer)}
-     */
     @Test
     void testSearchPatientProfileMongoPagination() throws FHIRException {
         // Arrange
@@ -1513,10 +1410,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertNull(actualSearchPatientProfileMongoPaginationResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongoPagination(Integer)}
-     */
     @Test
     void testSearchPatientProfileMongoPagination2() throws FHIRException {
         // Arrange
@@ -1621,10 +1514,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         verify(patientDemographicModel_NDHM_Patient_Profile_Repo).findAll(Mockito.<Pageable>any());
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongoPagination(Integer)}
-     */
     @Test
     void testSearchPatientProfileMongoPagination3() throws FHIRException {
         // Arrange
@@ -1819,10 +1708,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         verify(patientDemographicModel_NDHM_Patient_Profile_Repo).findAll(Mockito.<Pageable>any());
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongoPagination(Integer)}
-     */
     @Test
     void testSearchPatientProfileMongoPagination4() throws FHIRException {
         // Arrange
@@ -1837,10 +1722,6 @@ class PatientDataGatewayServiceImplDiffblueTest {
         assertNull(actualSearchPatientProfileMongoPaginationResult);
     }
 
-    /**
-     * Method under test:
-     * {@link PatientDataGatewayServiceImpl#searchPatientProfileMongoPagination(Integer)}
-     */
     @Test
     void testSearchPatientProfileMongoPagination5() throws FHIRException {
         // Arrange, Act and Assert

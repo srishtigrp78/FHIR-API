@@ -4,6 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import com.wipro.fhir.data.mongo.care_context.AddCareContext;
 import com.wipro.fhir.data.mongo.care_context.CareContextPatient;
 import com.wipro.fhir.data.mongo.care_context.Credential;
@@ -13,38 +21,20 @@ import com.wipro.fhir.data.mongo.care_context.Requester;
 import com.wipro.fhir.utils.exception.FHIRException;
 import com.wipro.fhir.utils.http.HttpUtils;
 
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-@ContextConfiguration(classes = {ValidateHealthID_NDHMServiceImpl.class})
 @ExtendWith(SpringExtension.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@DisabledInAotMode
-class ValidateHealthID_NDHMServiceImplDiffblueTest {
-    @MockBean
+class ValidateHealthID_NDHMServiceImplTest {
+    @Mock
     private Common_NDHMService common_NDHMService;
 
-    @MockBean
+    @Mock
     private GenerateSession_NDHMService generateSession_NDHMService;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    @Autowired
+    @InjectMocks
     private ValidateHealthID_NDHMServiceImpl validateHealthID_NDHMServiceImpl;
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testGenerateOTPForHealthIDValidation() throws FHIRException {
         // Arrange
@@ -56,10 +46,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testGenerateOTPForHealthIDValidation2() throws FHIRException {
         // Arrange
@@ -70,10 +56,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testGenerateOTPForHealthIDValidation3() throws FHIRException {
         // Arrange
@@ -84,10 +66,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#generateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testGenerateOTPForHealthIDValidation4() throws FHIRException {
         // Arrange
@@ -129,10 +107,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation() throws FHIRException {
         // Arrange
@@ -175,10 +149,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation2() throws FHIRException {
         // Arrange
@@ -190,10 +160,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation3() throws FHIRException {
         // Arrange
@@ -235,10 +201,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation4() throws FHIRException {
         // Arrange
@@ -280,10 +242,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation5() throws FHIRException {
         // Arrange
@@ -325,10 +283,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation6() throws FHIRException {
         // Arrange
@@ -371,10 +325,6 @@ class ValidateHealthID_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link ValidateHealthID_NDHMServiceImpl#validateOTPForHealthIDValidation(String)}
-     */
     @Test
     void testValidateOTPForHealthIDValidation7() throws FHIRException {
         // Arrange

@@ -14,19 +14,16 @@ import org.hl7.fhir.r4.model.StringType;
 import org.hl7.fhir.r4.model.UriType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {OrganizationResource.class})
 @ExtendWith(SpringExtension.class)
-class OrganizationResourceDiffblueTest {
-    @Autowired
+class OrganizationResourceTest {
+    @InjectMocks
     private OrganizationResource organizationResource;
 
-    /**
-     * Method under test: {@link OrganizationResource#getOrganization()}
-     */
     @Test
     void testGetOrganization() {
         // Arrange and Act

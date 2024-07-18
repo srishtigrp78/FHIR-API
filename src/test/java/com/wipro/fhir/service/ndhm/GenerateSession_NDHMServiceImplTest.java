@@ -6,36 +6,30 @@ import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.wipro.fhir.utils.exception.FHIRException;
-import com.wipro.fhir.utils.http.HttpUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {GenerateSession_NDHMServiceImpl.class})
+import com.wipro.fhir.utils.exception.FHIRException;
+import com.wipro.fhir.utils.http.HttpUtils;
+
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class GenerateSession_NDHMServiceImplDiffblueTest {
-    @MockBean
+class GenerateSession_NDHMServiceImplTest {
+    @Mock
     private Common_NDHMService common_NDHMService;
 
-    @Autowired
+    @InjectMocks
     private GenerateSession_NDHMServiceImpl generateSession_NDHMServiceImpl;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    /**
-     * Method under test:
-     * {@link GenerateSession_NDHMServiceImpl#generateNDHMAuthToken()}
-     */
     @Test
     void testGenerateNDHMAuthToken() throws FHIRException {
         // Arrange
@@ -53,10 +47,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateSession_NDHMServiceImpl#generateNDHMAuthToken()}
-     */
     @Test
     void testGenerateNDHMAuthToken2() throws FHIRException {
         // Arrange
@@ -74,10 +64,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateSession_NDHMServiceImpl#generateNDHMAuthToken()}
-     */
     @Test
     void testGenerateNDHMAuthToken3() throws FHIRException {
         // Arrange
@@ -95,10 +81,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateSession_NDHMServiceImpl#generateNDHMAuthToken()}
-     */
     @Test
     void testGenerateNDHMAuthToken4() throws FHIRException {
         // Arrange
@@ -116,10 +98,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateSession_NDHMServiceImpl#generateNDHMAuthToken()}
-     */
     @Test
     void testGenerateNDHMAuthToken5() throws FHIRException {
         // Arrange
@@ -137,10 +115,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link GenerateSession_NDHMServiceImpl#generateNDHMAuthToken()}
-     */
     @Test
     void testGenerateNDHMAuthToken6() throws FHIRException {
         // Arrange
@@ -158,9 +132,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test: {@link GenerateSession_NDHMServiceImpl#getNDHMAuthToken()}
-     */
     @Test
     void testGetNDHMAuthToken() throws FHIRException {
         // Arrange
@@ -178,9 +149,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test: {@link GenerateSession_NDHMServiceImpl#getNDHMAuthToken()}
-     */
     @Test
     void testGetNDHMAuthToken2() throws FHIRException {
         // Arrange
@@ -198,9 +166,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test: {@link GenerateSession_NDHMServiceImpl#getNDHMAuthToken()}
-     */
     @Test
     void testGetNDHMAuthToken3() throws FHIRException {
         // Arrange
@@ -218,9 +183,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test: {@link GenerateSession_NDHMServiceImpl#getNDHMAuthToken()}
-     */
     @Test
     void testGetNDHMAuthToken4() throws FHIRException {
         // Arrange
@@ -238,9 +200,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test: {@link GenerateSession_NDHMServiceImpl#getNDHMAuthToken()}
-     */
     @Test
     void testGetNDHMAuthToken5() throws FHIRException {
         // Arrange
@@ -258,9 +217,6 @@ class GenerateSession_NDHMServiceImplDiffblueTest {
                 Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test: {@link GenerateSession_NDHMServiceImpl#getNDHMAuthToken()}
-     */
     @Test
     void testGetNDHMAuthToken6() throws FHIRException {
         // Arrange

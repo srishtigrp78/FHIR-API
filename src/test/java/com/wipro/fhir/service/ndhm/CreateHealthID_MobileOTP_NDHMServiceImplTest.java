@@ -5,39 +5,32 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.wipro.fhir.utils.exception.FHIRException;
-import com.wipro.fhir.utils.http.HttpUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {CreateHealthID_MobileOTP_NDHMServiceImpl.class})
+import com.wipro.fhir.utils.exception.FHIRException;
+import com.wipro.fhir.utils.http.HttpUtils;
+
 @ExtendWith(SpringExtension.class)
-@DisabledInAotMode
-class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
-    @MockBean
+class CreateHealthID_MobileOTP_NDHMServiceImplTest {
+    @Mock
     private Common_NDHMService common_NDHMService;
 
-    @Autowired
+    @InjectMocks
     private CreateHealthID_MobileOTP_NDHMServiceImpl createHealthID_MobileOTP_NDHMServiceImpl;
 
-    @MockBean
+    @Mock
     private GenerateSession_NDHMService generateSession_NDHMService;
 
-    @MockBean
+    @Mock
     private HttpUtils httpUtils;
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP() throws FHIRException {
         // Arrange
@@ -48,10 +41,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP2() throws FHIRException {
         // Arrange
@@ -62,10 +51,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP3() throws FHIRException {
         // Arrange
@@ -76,10 +61,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP4() throws FHIRException {
         // Arrange
@@ -97,10 +78,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(httpUtils).postWithResponseEntity(eq("${ndhmGenerateOTP}"), eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP5() throws FHIRException {
         // Arrange
@@ -118,10 +95,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(httpUtils).postWithResponseEntity(eq("${ndhmGenerateOTP}"), eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP6() throws FHIRException {
         // Arrange
@@ -139,10 +112,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(httpUtils).postWithResponseEntity(eq("${ndhmGenerateOTP}"), eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#generateOTP(String)}
-     */
     @Test
     void testGenerateOTP7() throws FHIRException {
         // Arrange
@@ -160,10 +129,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(httpUtils).postWithResponseEntity(eq("${ndhmGenerateOTP}"), eq("null"), Mockito.<HttpHeaders>any());
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP() throws FHIRException {
         // Arrange
@@ -174,10 +139,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP2() throws FHIRException {
         // Arrange
@@ -189,10 +150,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP3() throws FHIRException {
         // Arrange
@@ -203,10 +160,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP4() throws FHIRException {
         // Arrange
@@ -217,10 +170,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP5() throws FHIRException {
         // Arrange
@@ -231,10 +180,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#validateOTP(String)}
-     */
     @Test
     void testValidateOTP6() throws FHIRException {
         // Arrange
@@ -245,10 +190,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#createHealthID(String, String)}
-     */
     @Test
     void testCreateHealthID() throws FHIRException {
         // Arrange, Act and Assert
@@ -264,10 +205,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
                 () -> createHealthID_MobileOTP_NDHMServiceImpl.createHealthID("token", "NDHM OTP TOKEN"));
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#createHealthID(String, String)}
-     */
     @Test
     void testCreateHealthID2() throws FHIRException {
         // Arrange
@@ -279,10 +216,6 @@ class CreateHealthID_MobileOTP_NDHMServiceImplDiffblueTest {
         verify(generateSession_NDHMService).getNDHMAuthToken();
     }
 
-    /**
-     * Method under test:
-     * {@link CreateHealthID_MobileOTP_NDHMServiceImpl#createHealthID(String, String)}
-     */
     @Test
     void testCreateHealthID3() throws FHIRException {
         // Arrange

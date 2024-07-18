@@ -12,19 +12,16 @@ import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.UriType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@ContextConfiguration(classes = {PractitionerResource.class})
 @ExtendWith(SpringExtension.class)
-class PractitionerResourceDiffblueTest {
-    @Autowired
+class PractitionerResourceTest {
+    @InjectMocks
     private PractitionerResource practitionerResource;
 
-    /**
-     * Method under test: {@link PractitionerResource#getPractitioner()}
-     */
     @Test
     void testGetPractitioner() {
         // Arrange and Act
