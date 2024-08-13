@@ -165,4 +165,15 @@ public class Common_NDHMServiceImpl implements Common_NDHMService {
 		else
 			throw new FHIRException("NDHM_FHIR Null response returned from API");
 	}
+	
+	@Override
+	public HttpHeaders getHeadersWithAadhaarBioXtoken(String ndhmAuthToken, String X_Token) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		if (ndhmAuthToken != null)
+			headers.set("Authorization", ndhmAuthToken); 
+		headers.set("X-Token", "Bearer " + X_Token);
+		return headers;
+	}
+
 }
