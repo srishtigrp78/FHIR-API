@@ -251,6 +251,7 @@
 					<format>HTML</format>
 					<nvdApiServerId>nvd</nvdApiServerId>
 				</configuration>
+				
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
