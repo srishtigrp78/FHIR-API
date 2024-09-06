@@ -97,11 +97,11 @@
 		</dependency>
 
 		<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-data-mongodb</artifactId>
-    		
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+
 		</dependency>
-		
+
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
@@ -128,9 +128,9 @@
 			<version>2.0</version>
 		</dependency>
 		<dependency>
-    		<groupId>org.json</groupId>
-    		<artifactId>json</artifactId>
-    		<version>20231013</version> 
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20231013</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -160,13 +160,13 @@
 			<artifactId>jackson-datatype-joda</artifactId>
 			<version>2.17.0</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.5.0-rc1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
@@ -190,19 +190,21 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/hapi-fhir-structures-r4 -->
+		<!--
+		https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/hapi-fhir-structures-r4 -->
 		<dependency>
-    		<groupId>ca.uhn.hapi.fhir</groupId>
-    		<artifactId>hapi-fhir-structures-r4</artifactId>
-    		<version>7.0.2</version>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>hapi-fhir-structures-r4</artifactId>
+			<version>7.0.2</version>
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/org.hl7.fhir.utilities -->
+		<!--
+		https://mvnrepository.com/artifact/ca.uhn.hapi.fhir/org.hl7.fhir.utilities -->
 		<dependency>
-    		<groupId>ca.uhn.hapi.fhir</groupId>
-    		<artifactId>org.hl7.fhir.utilities</artifactId>
-    		<version>6.3.6</version>
+			<groupId>ca.uhn.hapi.fhir</groupId>
+			<artifactId>org.hl7.fhir.utilities</artifactId>
+			<version>6.3.6</version>
 		</dependency>
 
 		<!-- lombok -->
@@ -226,28 +228,37 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>6.1.6</version>
+			<version>6.1.12</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
 		<dependency>
-    		<groupId>com.jayway.jsonpath</groupId>
-    		<artifactId>json-path</artifactId>
-    		<version>2.9.0</version>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>2.9.0</version>
 		</dependency>
 
 	</dependencies>
 
 	<build>
-		<finalName>fhirapi-v1.0</finalName>
+		<finalName>fhirapi-v3.0.0</finalName>
 
 		<plugins>
-			
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>10.0.3</version>
+				<configuration>
+					<format>HTML</format>
+					<nvdApiServerId>nvd</nvdApiServerId>
+				</configuration>
+				
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -292,7 +303,8 @@
 									<directory>src/main/environment</directory>
 									<filtering>true</filtering>
 									<includes>
-										<include>common_${environment}.properties</include>
+										<include>
+											common_${environment}.properties</include>
 									</includes>
 								</resource>
 							</resources>
@@ -314,11 +326,13 @@
 						<configuration>
 							<target>
 								<echo>
-									concatenating properties file ${target-properties} and
+									concatenating properties file
+									${target-properties} and
 									${source-properties}
 								</echo>
-								<concat destfile="${target-properties}" append="yes"
-										force="yes">
+								<concat destfile="${target-properties}"
+									append="yes"
+									force="yes">
 									<fileset file="${source-properties}">
 									</fileset>
 								</concat>
@@ -334,7 +348,7 @@
 						<configuration>
 							<tasks>
 								<delete>
-									<file file="${source-properties}"/>
+									<file file="${source-properties}" />
 								</delete>
 							</tasks>
 						</configuration>
@@ -370,13 +384,13 @@
 				</executions>
 			</plugin>
 			<plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.3</version> 
-          <configuration>
-              <failOnMissingWebXml>false</failOnMissingWebXml>
-          </configuration>
-      </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
 
 		</plugins>
 

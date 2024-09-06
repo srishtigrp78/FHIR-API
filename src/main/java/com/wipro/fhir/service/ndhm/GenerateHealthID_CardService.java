@@ -30,4 +30,6 @@ public interface GenerateHealthID_CardService {
 	public String validateOTP(String request) throws FHIRException;
 
 	public String generateCard(String requestOBJ, String NDHM_Auth_TOKEN) throws FHIRException;
+	
+	public String generateHealthCardForBio(String requestOBJ, String x_Token) throws FHIRException;
 }
